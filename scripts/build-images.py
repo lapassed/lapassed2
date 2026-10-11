@@ -2,14 +2,14 @@
 
 Pour chaque photo :
   - agrandissement ×2 (Lanczos) pour les écrans haute densité ;
-  - netteté fine (unsharp mask) puis léger contraste local (« clarté ») ;
+  - netteté fine (unsharp mask), léger contraste local (« clarté »), contraste ×1.12 et saturation ×1.05 ;
   - export WebP en 600 / 1200 / 2048 px de large (ou la largeur max disponible) + un JPEG haute qualité de secours.
 
 Usage : python3 scripts/build-images.py
 """
 from pathlib import Path
 
-from PIL import Image, ImageFilter
+from PIL import Image, ImageEnhance, ImageFilter
 
 DIR = Path(__file__).resolve().parent.parent / "assets" / "images"
 WIDTHS = (600, 1200, 2048)
@@ -20,6 +20,9 @@ def enhance(im: Image.Image) -> Image.Image:
     im = im.resize((im.width * 2, im.height * 2), Image.LANCZOS)
     im = im.filter(ImageFilter.UnsharpMask(radius=1.8, percent=80, threshold=3))
     im = im.filter(ImageFilter.UnsharpMask(radius=24, percent=14, threshold=0))
+    # contraste/saturation intégrés à l'image (évite un filtre CSS recalculé pendant l'animation)
+    im = ImageEnhance.Contrast(im).enhance(1.12)
+    im = ImageEnhance.Color(im).enhance(1.05)
     return im
 
 

@@ -150,7 +150,7 @@ const ALERT_ENDPOINT = null;
             l.animate([
               { opacity: 0, transform: 'translateY(.55em) rotate(6deg)', filter: 'blur(6px)' },
               { opacity: 1, transform: 'none', filter: 'blur(0)' }
-            ], { duration: 760, delay: 250 + n++ * 26, easing: EASE, fill: 'both' });
+            ], { duration: 760, delay: 250 + n++ * 26, easing: EASE, fill: 'backwards' });
           }
           frag.appendChild(ws);
         });
@@ -170,10 +170,10 @@ const ALERT_ENDPOINT = null;
       { transform: 'translateY(0) scale(1.05,.94)', offset: .8 },
       { transform: 'translateY(-5%)', offset: .9 },
       { transform: 'none' }
-    ], { duration: 1600, easing: 'cubic-bezier(.45,0,.55,1)', fill: 'both' });
+    ], { duration: 1600, easing: 'cubic-bezier(.45,0,.55,1)', fill: 'backwards' });
     qa('[data-intro]').forEach((el, i) => el.animate(
       [{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }],
-      { duration: 900, delay: 900 + i * 140, easing: EASE, fill: 'both' }));
+      { duration: 900, delay: 900 + i * 140, easing: EASE, fill: 'backwards' }));
   };
 
   /* ---------- Apparitions au scroll ---------- */
@@ -268,20 +268,21 @@ const ALERT_ENDPOINT = null;
     const cur = q('[data-cursor]'), inner = q('[data-cursor-in]');
     if (!cur) return;
     cur.style.display = 'block'; doc.classList.add('lpd-cursor');
-    let mx = -100, my = -100, x = -100, y = -100, rot = 0;
+    let mx = -100, my = -100, x = -100, y = -100, rot = 0, running = false, hot = null;
+    const loop = () => {
+      const dx = mx - x, dy = my - y; x += dx * 0.22; y += dy * 0.22; rot += dx * 0.6;
+      cur.style.transform = `translate3d(${x}px,${y}px,0) rotate(${rot}deg)`;
+      running = Math.abs(dx) + Math.abs(dy) > 0.3;
+      if (running) requestAnimationFrame(loop);
+    };
+    const kick = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
     addEventListener('pointermove', e => {
       if (e.pointerType !== 'mouse') return;
-      mx = e.clientX; my = e.clientY;
-      const hot = e.target.closest && e.target.closest('a,button,input,[data-flip],[data-magnetic]');
-      inner.style.transform = hot ? 'scale(1.9)' : 'scale(1)';
+      mx = e.clientX; my = e.clientY; kick();
+      const h = !!(e.target.closest && e.target.closest('a,button,input,[data-flip],[data-magnetic]'));
+      if (h !== hot) { hot = h; inner.style.transform = h ? 'scale(1.9)' : 'scale(1)'; }
     }, { passive: true });
-    document.addEventListener('mouseleave', () => { mx = my = -100; });
-    const loop = () => {
-      const dx = mx - x; x += dx * 0.22; y += (my - y) * 0.22; rot += dx * 0.6;
-      cur.style.transform = `translate3d(${x}px,${y}px,0) rotate(${rot}deg)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
+    document.addEventListener('mouseleave', () => { mx = my = -100; kick(); });
   };
 
   /* ---------- Bandeau partenaires ---------- */
@@ -299,9 +300,19 @@ const ALERT_ENDPOINT = null;
   const court = qa('[data-bgcourt] path'), heroInner = q('[data-hero-inner]');
   const mission = q('[data-sec="mission"]'), events = q('[data-sec="events"]'), rim = q('[data-rim]');
   let K = null, k7 = null, galTop = 0, galLen = 0, lastY = null, navSolid = null;
+  let maxScroll = 1, cards = [], zIdx = null, last = {};
+
+  /* Hauteur d'écran « stable » : sur mobile, la barre d'adresse qui apparaît/disparaît
+     change innerHeight au scroll. On l'ignore (sinon tout se recalcule et la page saute). */
+  let vw = innerWidth, vh = innerHeight;
+  const viewportChanged = () => {
+    const w = innerWidth, h = innerHeight;
+    if (w === vw && Math.abs(h - vh) < 160) return false;
+    vw = w; vh = h; return true;
+  };
 
   const measure = () => {
-    const W = innerWidth, H = innerHeight, sy = scrollY, mob = W < 900;
+    const W = vw, H = vh, sy = scrollY, mob = W < 900;
     const top = el => el.getBoundingClientRect().top + sy;
     if (gal && track) {
       if (reduced) galLen = 0;
@@ -311,8 +322,11 @@ const ALERT_ENDPOINT = null;
         if (gal.style.height !== h) gal.style.height = h;
       }
       galTop = top(gal);
+      // centre de chaque photo dans la piste, pour calculer la parallaxe sans relire le DOM
+      cards = zooms.map(z => ({ z, img: z.querySelector('img'), c: z.offsetLeft + z.offsetWidth / 2 }));
     }
     const maxY = document.documentElement.scrollHeight - H;
+    maxScroll = Math.max(1, maxY);
     const s0 = mob ? Math.min(W * 0.52, 260) : Math.min(W * 0.32, 470);
     const k0 = { y: 0, x: mob ? W * 0.78 : W * 0.75, cy: mob ? H * 0.27 : H * 0.42, s: s0, o: 1 };
     if (reduced || !mission || !rim || !events) { K = [k0, { ...k0, y: H * 0.8, o: 0 }]; k7 = null; return; }
@@ -341,8 +355,11 @@ const ALERT_ENDPOINT = null;
     if (sw && sw.animate) sw.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none', offset: .25 }, { opacity: 1, offset: .75 }, { opacity: 0, transform: 'translateY(-12px)' }], { duration: 1600, easing: 'ease-out' });
   };
 
+  // n'écrit un style que s'il a changé
+  const set = (el, k, prop, v) => { if (last[k] !== v) { last[k] = v; el.style[prop] = v; } };
+
   const update = () => {
-    const y = scrollY, W = innerWidth, H = innerHeight;
+    const y = scrollY, W = vw, H = vh;
 
     if (K && ball) {
       let i = 0; while (i < K.length - 2 && y > K[i + 1].y) i++;
@@ -353,17 +370,18 @@ const ALERT_ENDPOINT = null;
       let cy = ca + (cb - ca) * ey;
       const s = a.s + (b.s - a.s) * eg, o = a.o + (b.o - a.o) * eg;
       if (a.drib) cy -= Math.abs(Math.sin((y - a.y) / 85)) * (W < 900 ? 46 : 84) * Math.sin(Math.PI * t);
-      ball.style.transform = `translate3d(${x - 100}px,${cy - 100}px,0) scale(${s / 200})`;
-      ball.style.opacity = o;
-      ball.style.zIndex = (s > 320 || y < H * 0.85) ? -1 : 30;
-      if (spin) spin.style.transform = `rotate(${y * 0.32}deg)`;
+      ball.style.transform = `translate3d(${(x - 100).toFixed(1)}px,${(cy - 100).toFixed(1)}px,0) scale(${(s / 200).toFixed(4)})`;
+      set(ball, 'bo', 'opacity', o.toFixed(3));
+      const z = (s > 320 || y < H * 0.85) ? -1 : 30;
+      if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
+      if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
       if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
       lastY = y;
     }
 
     if (!reduced && court.length) {
-      const docH = document.documentElement.scrollHeight - H, p = docH > 0 ? y / docH : 0, n = court.length;
-      court.forEach((el, j) => { el.style.strokeDashoffset = 1 - cl((p * 1.15 - j / n * 0.55) / 0.3); });
+      const p = y / maxScroll, n = court.length;
+      court.forEach((el, j) => set(el, 'c' + j, 'strokeDashoffset', (1 - cl((p * 1.15 - j / n * 0.55) / 0.3)).toFixed(3)));
     }
 
     if (nav) {
@@ -371,20 +389,22 @@ const ALERT_ENDPOINT = null;
       if (solid !== navSolid) { navSolid = solid; nav.classList.toggle('is-solid', solid); }
     }
 
-    if (!reduced && heroInner) {
+    if (!reduced && heroInner && (y < H * 1.2 || last.hy !== 'done')) {
       const hp = cl(y / (H * 0.9));
-      heroInner.style.transform = `translate3d(0,${y * 0.18}px,0)`;
-      heroInner.style.opacity = 1 - hp * 0.9;
+      heroInner.style.transform = `translate3d(0,${(Math.min(y, H * 1.2) * 0.18).toFixed(1)}px,0)`;
+      set(heroInner, 'ho', 'opacity', (1 - hp * 0.9).toFixed(3));
+      last.hy = y < H * 1.2 ? '' : 'done';
     }
 
-    if (!reduced && track && galLen > 0) {
-      const gp = cl((y - galTop) / galLen);
-      track.style.transform = `translate3d(${-gp * galLen}px,0,0)`;
-      zooms.forEach(z => {
-        const r = z.getBoundingClientRect(), off = (r.left + r.width / 2 - W / 2) / W;
-        z.style.transform = `scale(${1 - Math.min(Math.abs(off), 1) * 0.08})`;
-        const img = z.querySelector('img');
-        if (img) img.style.transform = `translate3d(${-off * 9}%,0,0) scale(1.18)`;
+    // galerie : seulement quand elle est à l'écran
+    if (!reduced && track && galLen > 0 && y > galTop - H && y < galTop + galLen + H) {
+      const tx = cl((y - galTop) / galLen) * galLen;
+      track.style.transform = `translate3d(${(-tx).toFixed(1)}px,0,0)`;
+      cards.forEach(({ z, img, c }) => {
+        const off = (c - tx - W / 2) / W;
+        if (Math.abs(off) > 1.4) return;
+        z.style.transform = `scale(${(1 - Math.min(Math.abs(off), 1) * 0.08).toFixed(4)})`;
+        if (img) img.style.transform = `translate3d(${(-off * 9).toFixed(2)}%,0,0) scale(1.18)`;
       });
     }
   };
@@ -395,12 +415,18 @@ const ALERT_ENDPOINT = null;
   let raf = 0;
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); }, { passive: true });
   const re = () => { measure(); update(); };
-  addEventListener('resize', re);
+  addEventListener('resize', () => { if (viewportChanged()) re(); });
   requestAnimationFrame(re);
   if (document.fonts) document.fonts.ready.then(re);
   addEventListener('load', re);
   if ('ResizeObserver' in window) {
     let roT;
-    new ResizeObserver(() => { clearTimeout(roT); roT = setTimeout(re, 80); }).observe(document.body);
+    // la hauteur de la page change (polices, images) : on remesure, sans boucler sur nos propres changements
+    let lastH = 0;
+    new ResizeObserver(([e]) => {
+      const h = Math.round(e.contentRect.height);
+      if (Math.abs(h - lastH) < 2) return;
+      lastH = h; clearTimeout(roT); roT = setTimeout(re, 120);
+    }).observe(document.body);
   }
 })();
