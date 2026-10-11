@@ -72,6 +72,8 @@ html.lpd-cursor input { cursor: text !important; }
   contain: layout paint style;
 }
 .ball-intro { width: 100%; height: 100%; }
+/* grand ballon pré-dessiné (écrans tactiles) : seule son opacité change, jamais sa taille */
+.ball-big { position: fixed; left: 50%; top: 50%; z-index: -1; pointer-events: none; opacity: 0; will-change: opacity; }
 .ball-body {
   position: relative; width: 100%; height: 100%; border-radius: 50%;
   background: radial-gradient(circle at 38% 34%, #F2A15C 0%, #DE6A24 48%, #9E410E 100%);
@@ -79,9 +81,9 @@ html.lpd-cursor input { cursor: text !important; }
 /* coutures sur leur propre calque, rogné en cercle : la rotation est faite par le GPU, sans repeindre */
 .ball-spin { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; will-change: transform; }
 .seam { position: absolute; display: block; }
-.seam-v { left: 50%; top: -2%; bottom: -2%; width: 9px; margin-left: -4.5px; background: #3B1806; }
-.seam-h { top: 50%; left: -2%; right: -2%; height: 9px; margin-top: -4.5px; background: #3B1806; }
-.seam-l, .seam-r { top: -12%; bottom: -12%; border: 9px solid #3B1806; border-radius: 50%; }
+.seam-v { left: 50%; top: -2%; bottom: -2%; width: var(--sw, 9px); transform: translateX(-50%); background: #3B1806; }
+.seam-h { top: 50%; left: -2%; right: -2%; height: var(--sw, 9px); transform: translateY(-50%); background: #3B1806; }
+.seam-l, .seam-r { top: -12%; bottom: -12%; border: var(--sw, 9px) solid #3B1806; border-radius: 50%; }
 .seam-l { left: -46%; right: 58%; }
 .seam-r { left: 58%; right: -46%; }
 .ball-shade {

@@ -300,6 +300,19 @@ const ALERT_ENDPOINT = null;
   const court = qa('[data-bgcourt] path'), heroInner = q('[data-hero-inner]');
   const mission = q('[data-sec="mission"]'), events = q('[data-sec="events"]'), rim = q('[data-rim]');
   let K = null, k7 = null, galTop = 0, galLen = 0, lastY = null, navSolid = null;
+
+  /* Écrans tactiles : agrandir le ballon à chaque image force le téléphone à le redessiner
+     (saccades). On fait donc un fondu vers un grand ballon déjà dessiné à sa taille finale. */
+  const lite = !fine && !reduced;
+  let bigBall = null, bigSpin = null;
+  if (lite && ball) {
+    bigBall = ball.cloneNode(true);
+    bigBall.className = 'ball-big';
+    bigBall.querySelectorAll('[data-ball-spin],[data-ball-intro]').forEach(el => { delete el.dataset.ballSpin; delete el.dataset.ballIntro; });
+    bigBall.removeAttribute('data-ball');
+    bigSpin = bigBall.querySelector('.ball-spin');
+    ball.after(bigBall);
+  }
   let maxScroll = 1, cards = [], zIdx = null, last = {};
 
   /* Hauteur d'écran « stable » : sur mobile, la barre d'adresse qui apparaît/disparaît
@@ -335,9 +348,16 @@ const ALERT_ENDPOINT = null;
     const mt = top(mission), mb = mt + mission.offsetHeight;
     const r = rim.getBoundingClientRect(), rx = r.left + r.width / 2, ry = r.top + sy + r.height / 2, bs = r.width * 0.74;
     const k = Math.min(ry - H * 0.55, maxY - 200);
+    if (bigBall) {
+      const d = Math.round(big);
+      Object.assign(bigBall.style, { width: d + 'px', height: d + 'px', margin: `${-d / 2}px 0 0 ${-d / 2}px` });
+      bigBall.style.setProperty('--sw', (d * 0.015).toFixed(1) + 'px');
+    }
+    // tactile : le petit ballon grossit un peu et s'efface au centre, le grand prend le relais en fondu
+    const mid = bigBall ? { s: s0 * 1.6, o: 0 } : { s: big, o: 0.08 };
     K = [k0,
-      { y: mt - H * 0.45, x: W * 0.5, cy: H * 0.5, s: big, o: 0.08 },
-      { y: mb - H * 1.05, x: W * 0.5, cy: H * 0.5, s: big, o: 0.08 },
+      { y: mt - H * 0.45, x: W * 0.5, cy: H * 0.5, ...mid, big: 1 },
+      { y: mb - H * 1.05, x: W * 0.5, cy: H * 0.5, ...mid, big: 1 },
       { y: galTop, x: g, cy: H - g - 12, s: gs, o: 1 },
       { y: galTop + galLen, x: W - g, cy: H - g - 12, s: gs, o: 1, ex: 'lin' },
       { y: top(events), x: W - g * 0.8, cy: H * 0.62, s: gs, o: 1, drib: 1 },
@@ -376,6 +396,12 @@ const ALERT_ENDPOINT = null;
       const z = (s > 320 || y < H * 0.85) ? -1 : 30;
       if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
       if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+      if (bigBall) {
+        // opacité du grand ballon : 0 → 0.08 en arrivant au centre, 0.08 pendant la mission, → 0 ensuite
+        const bo = 0.08 * ((a.big ? 1 : 0) + ((b.big ? 1 : 0) - (a.big ? 1 : 0)) * eg);
+        set(bigBall, 'bb', 'opacity', bo.toFixed(3));
+        if (bo > 0) bigSpin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+      }
       if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
       lastY = y;
     }
