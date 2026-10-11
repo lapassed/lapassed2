@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  (function () {
+    var d = document.documentElement, t = null;
+    try { t = localStorage.getItem('lpd-theme'); } catch (e) {}
+    d.dataset.theme = t === 'light' || t === 'dark' ? t : 'dark';
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rm');
+    d.classList.add('js');
+  })();
+</script>
+<title>La Passe D – Tournois de basket 3x3 à Strasbourg et en Alsace</title>
+<meta name="description" content="La Passe D organise des tournois de basket 3x3 à Strasbourg et en Alsace, ouverts à tous les niveaux (Loisir / Elite). L'accès à la culture basketball pour tous.">
+<meta name="theme-color" content="#121822">
+<link rel="canonical" href="https://lapassed.fr/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Passe D">
+<meta property="og:title" content="La Passe D – Tournois de basket 3x3 à Strasbourg et en Alsace">
+<meta property="og:description" content="Tournois de basket 3x3 à Strasbourg, ouverts à tous les niveaux. Plus qu'un sport, un état d'esprit.">
+<meta property="og:url" content="https://lapassed.fr/">
+<meta property="og:image" content="https://lapassed.fr/assets/images/gallery-1.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsOrganization","name":"La Passe D","alternateName":"LaPasseD","url":"https://lapassed.fr/","logo":"https://lapassed.fr/assets/images/Logo%20v3.PNG","email":"lapassed52@gmail.com","sport":"Basketball 3x3","description":"Association organisatrice de tournois de basket 3x3 à Strasbourg et en Alsace, ouverts à tous les niveaux.","areaServed":[{"@type":"City","name":"Strasbourg"},{"@type":"AdministrativeArea","name":"Alsace"}],"sameAs":["https://www.instagram.com/lapassed_off","https://www.tiktok.com/@lapassed_off","https://www.linkedin.com/company/la-passe-d-off"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment inscrire mon équipe à un tournoi ?","acceptedAnswer":{"@type":"Answer","text":"Les inscriptions se font entièrement en ligne via les liens de la section « Prochains événements ». Attention, les places sont limitées !"}},{"@type":"Question","name":"Faut-il forcément une équipe de 4 (3+1) ?","acceptedAnswer":{"@type":"Answer","text":"Non, tu peux venir à 3. Mais en cas de blessure, ton équipe devra finir le tournoi à 2 ou déclarer forfait. Un remplaçant, c'est plus sûr."}},{"@type":"Question","name":"Quel est le niveau attendu ?","acceptedAnswer":{"@type":"Answer","text":"Tous les passionnés sont les bienvenus, du pur amateur au joueur confirmé. Nos tournois sont découpés en catégories Loisir et Elite pour que chaque match soit équilibré."}},{"@type":"Question","name":"Où se déroulent les tournois ?","acceptedAnswer":{"@type":"Answer","text":"À Strasbourg et en Alsace. Le lieu exact est indiqué sur chaque événement."}},{"@type":"Question","name":"Comment connaître la date du prochain tournoi ?","acceptedAnswer":{"@type":"Answer","text":"Active l'alerte email en bas de page et suis-nous sur Instagram et TikTok (@lapassed_off). Le compte à rebours apparaît en haut du site dès qu'une date est fixée."}},{"@type":"Question","name":"C'est quoi le 3x3 ?","acceptedAnswer":{"@type":"Answer","text":"Du basket à 3 contre 3 sur un demi-terrain, avec un seul panier. Rapide, intense et spectaculaire, c'est une discipline olympique depuis les Jeux de Tokyo en 2021."}}]}</script>
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<!-- Demi-terrain tracé à la craie (fond) -->
+<svg class="bg-court" data-bgcourt aria-hidden="true" viewBox="0 0 600 440" preserveAspectRatio="xMidYMin meet" fill="none" stroke="var(--chalk)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  <path pathLength="1" d="M10 10 H590 V430 H10 Z"/>
+  <path pathLength="1" d="M202 10 V242 H398 V10"/>
+  <path pathLength="1" d="M228 242 A72 72 0 0 0 372 242"/>
+  <path pathLength="1" d="M46 10 V165 A270 270 0 0 0 554 165 V10"/>
+  <path pathLength="1" d="M250 73 A50 50 0 0 0 350 73"/>
+  <path pathLength="1" d="M270 58 H330"/>
+  <path pathLength="1" d="M291 73 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/>
+</svg>
+
+<!-- Ballon (fil rouge) -->
+<div class="ball" data-ball aria-hidden="true">
+  <div class="ball-intro" data-ball-intro>
+    <div class="ball-body">
+      <div class="ball-spin" data-ball-spin>
+        <i class="seam seam-v"></i><i class="seam seam-h"></i><i class="seam seam-l"></i><i class="seam seam-r"></i>
+      </div>
+      <div class="ball-shade"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Grain -->
+<svg class="grain" aria-hidden="true"><filter id="lpdGrain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#lpdGrain)"/></svg>
+
+<!-- Curseur ballon -->
+<div class="cursor" data-cursor aria-hidden="true"><div class="cursor-in" data-cursor-in><i></i><i></i></div></div>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a href="#accueil" class="nav-logo" aria-label="La Passe D, retour en haut">
+      <img class="logo-light" src="assets/images/logo.png" alt="La Passe D" width="176" height="176">
+      <img class="logo-dark" src="assets/images/logo-blanc.png" alt="La Passe D" width="226" height="176">
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#association">L'Association</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#tournois">Tournois</a>
+      <a href="#partenaires">Partenaires</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-strong nav-cta" data-magnetic>Nous contacter</a>
+      <button type="button" class="icon-btn theme-btn" data-theme-toggle data-magnetic aria-label="Passer en mode clair"><span class="theme-ico"></span></button>
+      <button type="button" class="icon-btn burger" data-menu-open aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <div class="menu-top">
+    <img src="assets/images/logo-blanc.png" alt="La Passe D" width="226" height="176">
+    <button type="button" class="menu-close" data-menu-close aria-label="Fermer le menu">×</button>
+  </div>
+  <nav class="menu-links" aria-label="Navigation mobile">
+    <a href="#association">L'Association</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#tournois">Tournois</a>
+    <a href="#partenaires">Partenaires</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a href="#contact" class="menu-cta">Nous contacter</a>
+</div>
+
+<main>
+  <!-- 1. Hero -->
+  <section id="accueil" class="hero wrap">
+    <div class="hero-inner" data-hero-inner>
+      <div class="hero-tags mono" data-intro>
+        <span class="accent">● Basket 3x3</span><span>Strasbourg</span><span>Alsace</span><span>Loisir / Elite</span>
+      </div>
+      <h1 class="hero-title" data-split>
+        <span class="hero-kicker">La Passe D –</span>
+        <span class="hero-l1">Tournois de basket <span class="hl">3x3</span></span>
+        <span class="hero-l2 outline">à Strasbourg</span>
+      </h1>
+      <div class="hero-row">
+        <div class="hero-lead" data-intro>
+          <p>Organisateur de tournois de basket 3x3. <strong>L'accès à la culture basketball pour tous.</strong></p>
+          <div class="btn-row">
+            <a href="#tournois" class="btn btn-lg btn-blue" data-magnetic>Voir les tournois <span aria-hidden="true">→</span></a>
+            <a href="#association" class="btn btn-lg btn-ghost" data-magnetic>Découvrir l'asso</a>
+          </div>
+        </div>
+        <a href="#alerte" class="hero-next" data-next-soon data-intro>
+          <span class="mono muted">Prochain tournoi</span>
+          <span class="hero-soon"><span class="pulse"></span>Bientôt...</span>
+          <span class="hero-soon-sub">Active l'alerte pour être prévenu en premier →</span>
+        </a>
+        <div class="hero-next" data-next-dated hidden>
+          <div class="mono muted">Le prochain tournoi commence dans</div>
+          <div class="countdown" data-countdown role="timer" aria-live="off"></div>
+        </div>
+      </div>
+      <div class="hero-scroll mono" aria-hidden="true"><span></span>Scroll</div>
+    </div>
+  </section>
+
+  <!-- 2. Mission -->
+  <section id="association" class="mission wrap" data-sec="mission">
+    <div class="sec-head">
+      <h2 class="h2 h2-xl" data-reveal="up">Notre<br><span class="outline">mission</span></h2>
+      <p class="sec-lead" data-reveal="up" data-delay="120">Plus qu'un sport, <strong>un état d'esprit.</strong></p>
+    </div>
+    <div class="pillars">
+      <article class="pillar" data-reveal="up">
+        <div class="pillar-top mono"><span>01</span><span>TOURNOIS</span></div>
+        <div class="pillar-body">
+          <span class="pillar-emoji" aria-hidden="true">🏀</span>
+          <h3>Tournois 3x3</h3>
+          <p>Des événements compétitifs et conviviaux en plein cœur de la ville, pour tous les niveaux. Rejoins le grind.</p>
+        </div>
+      </article>
+      <article class="pillar pillar-blue" data-reveal="up" data-delay="120">
+        <div class="pillar-top mono"><span>02</span><span>CULTURE</span></div>
+        <div class="pillar-body">
+          <span class="pillar-emoji" aria-hidden="true">🎨</span>
+          <h3>Culture basket</h3>
+          <p>Art, musique et lifestyle. On célèbre tout ce qui gravite autour de la balle orange.</p>
+        </div>
+      </article>
+      <article class="pillar" data-reveal="up" data-delay="240">
+        <div class="pillar-top mono"><span>03</span><span>COMMUNAUTÉ</span></div>
+        <div class="pillar-body">
+          <span class="pillar-emoji" aria-hidden="true">🤝</span>
+          <h3>Communauté</h3>
+          <p>Créer du lien, échanger et partager la passion du basket avec une communauté soudée et bienveillante.</p>
+        </div>
+      </article>
+    </div>
+    <!-- ⚠ Valeurs provisoires : remplacer par les vrais chiffres (texte + data-count) -->
+    <div class="stats">
+      <div class="stat" data-reveal="up"><span class="stat-n" data-count="2">2</span><span class="stat-l">Student Nights organisées</span></div>
+      <div class="stat" data-reveal="up" data-delay="100"><span class="stat-n" data-count="48">48</span><span class="stat-l">équipes inscrites</span></div>
+      <div class="stat" data-reveal="up" data-delay="200"><span class="stat-n" data-count="96">96</span><span class="stat-l">matchs joués</span></div>
+      <div class="stat" data-reveal="up" data-delay="300"><span class="stat-n" data-count="170">170</span><span class="stat-l">joueurs et joueuses</span></div>
+    </div>
+  </section>
+
+  <!-- 3. Highlights -->
+  <section id="galerie" class="gallery" data-gallery>
+    <div class="gallery-pin">
+      <div class="gallery-head wrap">
+        <h2 class="h2 h2-gal">Nos highlights</h2>
+        <p>L'intensité du 3x3 en images.</p>
+      </div>
+      <div class="track" data-track>
+        <figure class="shot">
+          <div class="shot-frame s1" data-zoom data-reveal="mask">
+            <picture>
+              <source type="image/webp" srcset="assets/images/gallery-1-600.webp 600w, assets/images/gallery-1-1200.webp 1200w, assets/images/gallery-1-2048.webp 2048w" sizes="(max-width: 700px) 90vw, 55vw">
+              <img src="assets/images/gallery-1-hd.jpg" alt="Dunk spectaculaire en plein match lors d'un tournoi de basket 3x3 La Passe D" loading="lazy" decoding="async" width="2048" height="1362">
+            </picture>
+          </div>
+          <figcaption class="mono">01 — LE DUNK</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame s2" data-zoom data-reveal="mask">
+            <picture>
+              <source type="image/webp" srcset="assets/images/gallery-2-600.webp 600w, assets/images/gallery-2-1200.webp 1200w, assets/images/gallery-2-2048.webp 2048w" sizes="(max-width: 700px) 110vh, 100vh">
+              <img src="assets/images/gallery-2-hd.jpg" alt="Joueur s'envolant vers le panier avec ballon en main" loading="lazy" decoding="async" width="2048" height="1362">
+            </picture>
+          </div>
+          <figcaption class="mono">02 — L'ENVOL</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame s3" data-zoom data-reveal="mask">
+            <picture>
+              <source type="image/webp" srcset="assets/images/gallery-3-600.webp 600w, assets/images/gallery-3-1200.webp 1200w, assets/images/gallery-3-1362.webp 1362w" sizes="(max-width: 700px) 320px, 45vw">
+              <img src="assets/images/gallery-3-hd.jpg" alt="Tir en suspension décisif au-dessus de la défense adverse" loading="lazy" decoding="async" width="1362" height="2048">
+            </picture>
+          </div>
+          <figcaption class="mono">03 — LE SHOOT</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame s4" data-zoom data-reveal="mask">
+            <picture>
+              <source type="image/webp" srcset="assets/images/gallery-4-600.webp 600w, assets/images/gallery-4-1200.webp 1200w, assets/images/gallery-4-2048.webp 2048w" sizes="(max-width: 700px) 100vh, 95vh">
+              <img src="assets/images/gallery-4-hd.jpg" alt="Célébration chaleureuse et sourires entre coéquipiers sur le terrain" loading="lazy" decoding="async" width="2048" height="1362">
+            </picture>
+          </div>
+          <figcaption class="mono">04 — LA TEAM</figcaption>
+        </figure>
+        <figure class="shot">
+          <div class="shot-frame s1" data-zoom data-reveal="mask">
+            <picture>
+              <source type="image/webp" srcset="assets/images/gallery-5-600.webp 600w, assets/images/gallery-5-1200.webp 1200w, assets/images/gallery-5-1362.webp 1362w" sizes="(max-width: 700px) 320px, 45vw">
+              <img src="assets/images/gallery-5-hd.jpg" alt="Joueur de basket 3x3 posant avec le ballon de streetball" loading="lazy" decoding="async" width="1362" height="2048">
+            </picture>
+          </div>
+          <figcaption class="mono">05 — STREETBALL</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Événements -->
+  <section id="tournois" class="events wrap" data-sec="events">
+    <div class="sec-head">
+      <h2 class="h2 h2-lg" data-reveal="up">Prochains<br>événements</h2>
+      <p class="sec-note" data-reveal="up" data-delay="120">Survole une carte (ou touche-la sur mobile) pour voir l'envers du décor.</p>
+    </div>
+    <div class="cards">
+      <div class="card card-blue card-soon" data-reveal="up">
+        <div class="card-row"><span class="mono">PROCHAIN TOURNOI</span><span class="dot"></span></div>
+        <div class="card-soon-t">Bientôt...</div>
+        <div class="card-stack">
+          <p>La date n'est pas encore annoncée. Sois le premier au courant.</p>
+          <a href="#alerte" class="btn btn-card btn-night" data-magnetic>M'alerter →</a>
+        </div>
+      </div>
+
+      <div class="flip" data-reveal="up" data-delay="80" data-flip>
+        <div class="flip-inner">
+          <div class="face face-card">
+            <span class="badge mono">SONDAGE</span>
+            <div class="card-stack-m">
+              <h3 class="card-h">Aide-nous à préparer le prochain tournoi !</h3>
+              <p class="muted">On prépare notre premier grand tournoi 3x3 à Strasbourg. Donne ton avis en 3 minutes.</p>
+            </div>
+          </div>
+          <div class="face face-back">
+            <span class="mono back-label">3 MINUTES</span>
+            <p class="back-p">Format, horaires, catégories, ambiance : <strong>ton avis construit l'événement idéal.</strong></p>
+            <a href="https://forms.gle/GD2G6Wc5VQ66uXCr9" target="_blank" rel="noopener" class="btn btn-card btn-sky" data-magnetic>Donner mon avis →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip" data-reveal="up" data-delay="160" data-flip>
+        <div class="flip-inner">
+          <div class="face face-card face-media">
+            <div class="media">
+              <picture>
+                <source type="image/webp" srcset="assets/images/gallery-3-600.webp 600w, assets/images/gallery-3-1200.webp 1200w, assets/images/gallery-3-1362.webp 1362w" sizes="(max-width: 700px) 100vw, 400px">
+                <img src="assets/images/gallery-3-hd.jpg" alt="Student Night Easter, tournoi 3x3 au Basket Center" loading="lazy" decoding="async" width="1362" height="2048">
+              </picture>
+              <span class="past mono">PASSÉ</span>
+            </div>
+            <div class="media-body">
+              <div class="mono muted">2 AVRIL 2026</div>
+              <div class="card-stack-s"><h3 class="card-h">Student Night Easter</h3><div class="card-with muted">avec Le Basket Center</div></div>
+            </div>
+          </div>
+          <div class="face face-back">
+            <span class="mono back-label">STUDENT NIGHT · 02.04.26</span>
+            <p class="back-p">Merci à toutes les équipes. <strong>Retrouve les meilleurs moments en images.</strong></p>
+            <a href="#galerie" class="btn btn-card btn-outline-w">Voir la galerie</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip" data-reveal="up" data-delay="240" data-flip>
+        <div class="flip-inner">
+          <div class="face face-card face-media">
+            <div class="media">
+              <picture>
+                <source type="image/webp" srcset="assets/images/gallery-5-600.webp 600w, assets/images/gallery-5-1200.webp 1200w, assets/images/gallery-5-1362.webp 1362w" sizes="(max-width: 700px) 100vw, 400px">
+                <img src="assets/images/gallery-5-hd.jpg" alt="Student Night: The Last Dance, tournoi 3x3 au Basket Center" loading="lazy" decoding="async" width="1362" height="2048">
+              </picture>
+              <span class="past mono">PASSÉ</span>
+            </div>
+            <div class="media-body">
+              <div class="mono muted">20 MAI 2026</div>
+              <div class="card-stack-s"><h3 class="card-h">Student Night: The Last Dance</h3><div class="card-with muted">avec Le Basket Center</div></div>
+            </div>
+          </div>
+          <div class="face face-back">
+            <span class="mono back-label">STUDENT NIGHT · 20.05.26</span>
+            <p class="back-p">La dernière de la saison. <strong>Rendez-vous au prochain tip-off.</strong></p>
+            <a href="#alerte" class="btn btn-card btn-outline-w">Être alerté</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Le 3x3 en bref -->
+  <section id="format" class="format">
+    <div class="format-in wrap">
+      <div class="format-left">
+        <h2 class="h2 h2-fmt" data-reveal="up">Le 3x3<br>en bref</h2>
+        <svg class="court" data-draw-on viewBox="0 0 600 440" role="img" aria-label="Schéma d'un demi-terrain de basket 3x3 avec deux équipes de trois joueurs" fill="none" stroke="#121822" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path pathLength="1" d="M10 10 H590 V430 H10 Z"/>
+          <path pathLength="1" d="M202 10 V242 H398 V10"/>
+          <path pathLength="1" d="M228 242 A72 72 0 0 0 372 242"/>
+          <path pathLength="1" d="M46 10 V165 A270 270 0 0 0 554 165 V10"/>
+          <path pathLength="1" d="M250 73 A50 50 0 0 0 350 73"/>
+          <path pathLength="1" d="M270 58 H330"/>
+          <path pathLength="1" d="M291 73 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/>
+          <circle data-pop cx="300" cy="300" r="15" fill="#121822" stroke="none"/>
+          <circle data-pop cx="140" cy="230" r="15" fill="#121822" stroke="none"/>
+          <circle data-pop cx="470" cy="210" r="15" fill="#121822" stroke="none"/>
+          <circle data-pop cx="300" cy="200" r="13" fill="#FFFFFF"/>
+          <circle data-pop cx="180" cy="150" r="13" fill="#FFFFFF"/>
+          <circle data-pop cx="430" cy="140" r="13" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="facts">
+        <div class="fact" data-reveal="up"><span class="fact-n" data-count="3">3</span><span class="fact-t">contre 3, plus un remplaçant si tu veux</span></div>
+        <div class="fact" data-reveal="up" data-delay="100"><span class="fact-n">½</span><span class="fact-t">terrain, pour un jeu rapide et intense</span></div>
+        <div class="fact" data-reveal="up" data-delay="200"><span class="fact-n" data-count="1">1</span><span class="fact-t">seul panier, aucune pause</span></div>
+        <div class="fact" data-reveal="up" data-delay="300"><span class="fact-n" data-count="2021" data-from="1990">2021</span><span class="fact-t">discipline olympique depuis Tokyo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Partenaires -->
+  <section id="partenaires" class="partners">
+    <div class="sec-head wrap">
+      <h2 class="h2 h2-lg" data-reveal="up">Partenaires</h2>
+      <p class="sec-note" data-reveal="up" data-delay="120">Ils font vivre le 3x3 à Strasbourg avec nous.</p>
+    </div>
+    <!-- Remplacer par les vrais logos quand ils seront disponibles -->
+    <div class="marquee">
+      <div class="marquee-track" data-marquee>
+        <div class="marquee-group">
+          <span>Devenir partenaire</span><i></i><span class="outline-thin">Ta marque ici</span><i></i>
+          <span>Devenir partenaire</span><i></i><span class="outline-thin">Ta marque ici</span><i></i>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span>Devenir partenaire</span><i></i><span class="outline-thin">Ta marque ici</span><i></i>
+          <span>Devenir partenaire</span><i></i><span class="outline-thin">Ta marque ici</span><i></i>
+        </div>
+      </div>
+    </div>
+    <div class="wrap partner-cta-wrap">
+      <div class="partner-cta" data-reveal="up">
+        <div class="partner-cta-txt">
+          <h3>Devenir partenaire</h3>
+          <p>Associe ta marque à la scène 3x3 strasbourgeoise et touche une communauté jeune, active et passionnée.</p>
+        </div>
+        <a href="mailto:lapassed52@gmail.com?subject=Devenir%20partenaire%20de%20La%20Passe%20D" class="btn btn-lg btn-blue" data-magnetic>Écris-nous →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ -->
+  <section id="faq" class="faq wrap">
+    <div class="faq-head">
+      <h2 class="h2 h2-lg" data-reveal="up">FAQ</h2>
+      <p data-reveal="up" data-delay="100">Tout ce qu'il faut savoir avant de fouler le terrain.</p>
+    </div>
+    <div class="faq-list" data-faq>
+      <div class="faq-item is-open">
+        <h3><button type="button" aria-expanded="true" aria-controls="faq-a1" id="faq-q1"><span>Comment inscrire mon équipe à un tournoi ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1"><div><p>Les inscriptions se font entièrement en ligne via les liens de la section « Prochains événements ». Attention, les places sont limitées !</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-a2" id="faq-q2"><span>Faut-il forcément une équipe de 4 (3+1) ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a2" role="region" aria-labelledby="faq-q2"><div><p>Non, tu peux venir à 3. Mais en cas de blessure, ton équipe devra finir le tournoi à 2 ou déclarer forfait. Un remplaçant, c'est plus sûr.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-a3" id="faq-q3"><span>Quel est le niveau attendu ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a3" role="region" aria-labelledby="faq-q3"><div><p>Tous les passionnés sont les bienvenus, du pur amateur au joueur confirmé. Nos tournois sont découpés en catégories Loisir et Elite pour que chaque match soit équilibré.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-a4" id="faq-q4"><span>Où se déroulent les tournois ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a4" role="region" aria-labelledby="faq-q4"><div><p>À Strasbourg et en Alsace. Le lieu exact est indiqué sur chaque événement.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-a5" id="faq-q5"><span>Comment connaître la date du prochain tournoi ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a5" role="region" aria-labelledby="faq-q5"><div><p>Active l'alerte email en bas de page et suis-nous sur Instagram et TikTok (@lapassed_off). Le compte à rebours apparaît en haut du site dès qu'une date est fixée.</p></div></div>
+      </div>
+      <div class="faq-item">
+        <h3><button type="button" aria-expanded="false" aria-controls="faq-a6" id="faq-q6"><span>C'est quoi le 3x3 ?</span><span class="plus" aria-hidden="true"><i></i><i></i></span></button></h3>
+        <div class="faq-a" id="faq-a6" role="region" aria-labelledby="faq-q6"><div><p>Du basket à 3 contre 3 sur un demi-terrain, avec un seul panier. Rapide, intense et spectaculaire, c'est une discipline olympique depuis les Jeux de Tokyo en 2021.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Alerte email -->
+  <section id="alerte" class="alert wrap">
+    <div class="alert-txt">
+      <h2 class="h2 h2-alert" data-reveal="up">Ne manque pas le prochain tournoi !</h2>
+      <p class="alert-lead" data-reveal="up" data-delay="100">Inscris-toi à l'alerte email et sois le premier averti de l'ouverture des inscriptions.</p>
+      <form class="alert-form" data-alert-form data-reveal="up" data-delay="200" novalidate>
+        <label for="lpd-email" class="sr-only">Ton adresse email</label>
+        <input id="lpd-email" name="email" type="email" required autocomplete="email" placeholder="ton@email.com">
+        <button type="submit" class="btn btn-strong btn-submit" data-magnetic>M'alerter</button>
+      </form>
+      <div class="alert-ok" data-alert-ok role="status" hidden><span></span>C'est noté ! Tu seras le premier averti.</div>
+      <p class="alert-error" data-alert-error role="alert" hidden></p>
+      <p class="alert-legal">Tes données ne seront jamais revendues et servent uniquement à t'avertir de nos événements.</p>
+    </div>
+    <!-- Panier décoratif : aucun transform/opacity animé sur ses ancêtres -->
+    <div class="hoop-wrap" aria-hidden="true">
+      <div class="hoop">
+        <div class="board"><div class="board-sq"></div></div>
+        <div class="hoop-arm"></div>
+        <div class="rim" data-rim></div>
+        <div class="net" data-net></div>
+        <div class="swish" data-swish>Swish.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 9. Footer -->
+<footer id="contact" class="footer">
+  <div class="wrap footer-in">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/logo-blanc.png" alt="La Passe D" loading="lazy" width="226" height="176">
+        <p>Organisation de tournois de basket 3x3 à Strasbourg et en Alsace.</p>
+      </div>
+      <nav class="footer-col" aria-label="Liens rapides">
+        <h4 class="mono">LIENS RAPIDES</h4>
+        <a href="#association">L'Association</a>
+        <a href="#tournois">Tournois</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://forms.gle/GD2G6Wc5VQ66uXCr9" target="_blank" rel="noopener">Avis tournoi 3x3</a>
+      </nav>
+      <div class="footer-col">
+        <h4 class="mono">CONTACT</h4>
+        <a href="mailto:lapassed52@gmail.com">lapassed52@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4 class="mono">RÉSEAUX</h4>
+        <a href="https://www.instagram.com/lapassed_off" target="_blank" rel="noopener">Instagram · @lapassed_off</a>
+        <a href="https://www.tiktok.com/@lapassed_off" target="_blank" rel="noopener">TikTok · @lapassed_off</a>
+        <a href="https://www.linkedin.com/company/la-passe-d-off" target="_blank" rel="noopener">LinkedIn · la-passe-d-off</a>
+      </div>
+    </div>
+    <div class="wordmark" aria-hidden="true" data-reveal="up">La Passe D</div>
+    <div class="footer-bottom">
+      <span>© 2026 La Passe D. Tous droits réservés.</span>
+      <a href="#accueil">Retour en haut ↑</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

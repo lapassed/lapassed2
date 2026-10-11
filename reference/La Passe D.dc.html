@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>La Passe D – Tournois de basket 3x3 à Strasbourg et en Alsace</title>
+<meta name="description" content="La Passe D organise des tournois de basket 3x3 à Strasbourg et en Alsace, ouverts à tous les niveaux (Loisir / Elite). L'accès à la culture basketball pour tous.">
+<meta name="theme-color" content="#121822">
+<link rel="canonical" href="https://lapassed.fr/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Passe D">
+<meta property="og:title" content="La Passe D – Tournois de basket 3x3 à Strasbourg et en Alsace">
+<meta property="og:description" content="Tournois de basket 3x3 à Strasbourg, ouverts à tous les niveaux. Plus qu'un sport, un état d'esprit.">
+<meta property="og:url" content="https://lapassed.fr/">
+<meta property="og:image" content="https://lapassed.fr/assets/images/gallery-1.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsOrganization","name":"La Passe D","alternateName":"LaPasseD","url":"https://lapassed.fr/","logo":"https://lapassed.fr/assets/images/Logo%20v3.PNG","email":"lapassed52@gmail.com","sport":"Basketball 3x3","description":"Association organisatrice de tournois de basket 3x3 à Strasbourg et en Alsace, ouverts à tous les niveaux.","areaServed":[{"@type":"City","name":"Strasbourg"},{"@type":"AdministrativeArea","name":"Alsace"}],"sameAs":["https://www.instagram.com/lapassed_off","https://www.tiktok.com/@lapassed_off","https://www.linkedin.com/company/la-passe-d-off"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Comment inscrire mon équipe à un tournoi ?","acceptedAnswer":{"@type":"Answer","text":"Les inscriptions se font entièrement en ligne via les liens de la section « Prochains événements ». Attention, les places sont limitées !"}},{"@type":"Question","name":"Faut-il forcément une équipe de 4 (3+1) ?","acceptedAnswer":{"@type":"Answer","text":"Non, tu peux venir à 3. Mais en cas de blessure, ton équipe devra finir le tournoi à 2 ou déclarer forfait. Un remplaçant, c'est plus sûr."}},{"@type":"Question","name":"Quel est le niveau attendu ?","acceptedAnswer":{"@type":"Answer","text":"Tous les passionnés sont les bienvenus, du pur amateur au joueur confirmé. Nos tournois sont découpés en catégories Loisir et Elite pour que chaque match soit équilibré."}},{"@type":"Question","name":"Où se déroulent les tournois ?","acceptedAnswer":{"@type":"Answer","text":"À Strasbourg et en Alsace, notamment avec notre partenaire Le Basket Center. Le lieu exact est indiqué sur chaque événement."}},{"@type":"Question","name":"Comment connaître la date du prochain tournoi ?","acceptedAnswer":{"@type":"Answer","text":"Active l'alerte email en bas de page et suis-nous sur Instagram et TikTok (@lapassed_off). Le compte à rebours apparaît en haut du site dès qu'une date est fixée."}},{"@type":"Question","name":"C'est quoi le 3x3 ?","acceptedAnswer":{"@type":"Answer","text":"Du basket à 3 contre 3 sur un demi-terrain, avec un seul panier. Rapide, intense et spectaculaire, c'est une discipline olympique depuis les Jeux de Tokyo en 2021."}}]}</script>
+<style>
+:root{--bg:#FFFFFF;--bg2:#F2F5F9;--ink:#121822;--ink2:#465266;--line:rgba(18,24,34,.13);--chalk:rgba(18,24,34,.11);--card:#FFFFFF;--accentText:#2C68B0;--navbg:rgba(255,255,255,.84);--tile:#121822;--tileInk:#FFFFFF;--strong:#121822;--onStrong:#FFFFFF;--logoL:block;--logoD:none}
+html[data-theme="dark"]{--bg:#0F172A;--bg2:#121822;--ink:#FFFFFF;--ink2:#AAB6C8;--line:rgba(255,255,255,.13);--chalk:rgba(255,255,255,.12);--card:#121822;--accentText:#99DAFF;--navbg:rgba(15,23,42,.82);--tile:#1C2536;--tileInk:#99DAFF;--strong:#99DAFF;--onStrong:#121822;--logoL:none;--logoD:block}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background-color .4s,color .4s}
+a{color:var(--accentText);text-decoration:none}a:hover{color:var(--ink)}
+::selection{background:#99DAFF;color:#121822}
+html.lpd-cursor,html.lpd-cursor *{cursor:none!important}html.lpd-cursor input{cursor:text!important}
+@keyframes lpdFlip{from{transform:rotateX(-95deg);opacity:.3}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="position:relative;min-height:100vh">
+
+  <svg data-bgcourt="" aria-hidden="true" viewBox="0 0 600 440" preserveAspectRatio="xMidYMin meet" style="position:fixed;left:50%;top:9vh;width:min(150vw,1500px);height:auto;transform:translateX(-50%);z-index:-2;pointer-events:none;overflow:visible" fill="none" stroke="var(--chalk)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M10 10 H590 V430 H10 Z"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M202 10 V242 H398 V10"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M228 242 A72 72 0 0 0 372 242"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M46 10 V165 A270 270 0 0 0 554 165 V10"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M250 73 A50 50 0 0 0 350 73"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M270 58 H330"></path>
+    <path pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M291 73 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"></path>
+  </svg>
+
+  <div data-ball="" aria-hidden="true" style="position:fixed;left:0;top:0;width:200px;height:200px;z-index:30;pointer-events:none;will-change:transform,opacity;transform:translate3d(64vw,22vh,0)">
+    <div data-ball-intro="" style="width:100%;height:100%">
+      <div style="position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 38% 34%,#F2A15C 0%,#DE6A24 48%,#9E410E 100%)">
+        <div data-ball-spin="" style="position:absolute;inset:0">
+          <div style="position:absolute;left:50%;top:-2%;bottom:-2%;width:3px;margin-left:-1.5px;background:#3B1806"></div>
+          <div style="position:absolute;top:50%;left:-2%;right:-2%;height:3px;margin-top:-1.5px;background:#3B1806"></div>
+          <div style="position:absolute;top:-12%;bottom:-12%;left:-46%;right:58%;border:3px solid #3B1806;border-radius:50%"></div>
+          <div style="position:absolute;top:-12%;bottom:-12%;left:58%;right:-46%;border:3px solid #3B1806;border-radius:50%"></div>
+        </div>
+        <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 32% 26%,rgba(255,236,214,.38) 0%,rgba(255,236,214,0) 34%),radial-gradient(circle at 70% 78%,rgba(40,12,0,.5) 0%,rgba(40,12,0,0) 55%)"></div>
+      </div>
+    </div>
+  </div>
+
+  <svg aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:50;pointer-events:none;opacity:.07;mix-blend-mode:multiply"><filter id="lpdGrain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter><rect width="100%" height="100%" filter="url(#lpdGrain)"></rect></svg>
+
+  <div data-cursor="" aria-hidden="true" style="position:fixed;left:0;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;z-index:100;pointer-events:none;display:none;will-change:transform">
+    <div data-cursor-in="" style="width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;background:radial-gradient(circle at 38% 34%,#F2A15C,#DE6A24 50%,#9E410E);box-shadow:0 2px 8px rgba(0,0,0,.25);transition:transform .25s cubic-bezier(.2,.8,.2,1)">
+      <div style="position:absolute;left:50%;top:0;bottom:0;width:1.5px;margin-left:-.75px;background:#3B1806"></div>
+      <div style="position:absolute;top:50%;left:0;right:0;height:1.5px;margin-top:-.75px;background:#3B1806"></div>
+    </div>
+  </div>
+
+  <header data-nav="" style="position:fixed;top:0;left:0;right:0;z-index:60;transition:background-color .35s,box-shadow .35s,backdrop-filter .35s">
+    <div style="max-width:1440px;margin:0 auto;padding:14px clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <a href="#accueil" aria-label="La Passe D, retour en haut" style="display:flex;align-items:center;height:48px">
+        <img src="https://lapassed.fr/assets/images/Logo%20v3.PNG" alt="La Passe D" width="120" height="48" style="height:44px;width:auto;display:var(--logoL)">
+        <img src="https://lapassed.fr/assets/images/logo%20blanc.png" alt="La Passe D" width="120" height="48" style="height:44px;width:auto;display:var(--logoD)">
+      </a>
+      <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Navigation principale" style="display:flex;gap:clamp(18px,2.4vw,36px);font-size:15px;font-weight:500">
+          <a href="#association" style="color:var(--ink)">L'Association</a>
+          <a href="#galerie" style="color:var(--ink)">Galerie</a>
+          <a href="#tournois" style="color:var(--ink)">Tournois</a>
+          <a href="#partenaires" style="color:var(--ink)">Partenaires</a>
+          <a href="#faq" style="color:var(--ink)">FAQ</a>
+        </nav>
+      </sc-if>
+      <div style="display:flex;align-items:center;gap:10px">
+        <sc-if value="{{ desk }}" hint-placeholder-val="{{ true }}">
+          <a href="#contact" data-magnetic="" style="position:relative;overflow:hidden;display:flex;align-items:center;height:46px;padding:0 22px;border-radius:999px;background:var(--strong);color:var(--onStrong);font-weight:700;font-size:15px;transition:transform .35s cubic-bezier(.2,.8,.2,1)">Nous contacter</a>
+        </sc-if>
+        <button type="button" onClick="{{ toggleTheme }}" aria-label="{{ themeLabel }}" data-magnetic="" style="position:relative;overflow:hidden;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--ink);display:flex;align-items:center;justify-content:center;padding:0;transition:transform .35s cubic-bezier(.2,.8,.2,1)">
+          <span style="width:18px;height:18px;border-radius:50%;border:2px solid var(--ink);background:linear-gradient(90deg,var(--ink) 50%,transparent 50%)"></span>
+        </button>
+        <sc-if value="{{ mob }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ toggleMenu }}" aria-label="Ouvrir le menu" aria-expanded="{{ menuOpen }}" style="width:46px;height:46px;border-radius:50%;border:none;background:var(--strong);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0">
+            <span style="width:18px;height:2px;background:var(--onStrong)"></span>
+            <span style="width:18px;height:2px;background:var(--onStrong)"></span>
+          </button>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:70;background:#121822;color:#fff;display:flex;flex-direction:column;padding:24px 24px 40px">
+      <div style="display:flex;justify-content:space-between;align-items:center;height:48px">
+        <img src="https://lapassed.fr/assets/images/logo%20blanc.png" alt="La Passe D" width="120" height="48" style="height:44px;width:auto">
+        <button type="button" onClick="{{ toggleMenu }}" aria-label="Fermer le menu" style="width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:22px;font-family:inherit">×</button>
+      </div>
+      <nav aria-label="Navigation mobile" style="display:flex;flex-direction:column;gap:6px;margin-top:48px;font-size:42px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em">
+        <a href="#association" onClick="{{ closeMenu }}" style="color:#fff">L'Association</a>
+        <a href="#galerie" onClick="{{ closeMenu }}" style="color:#fff">Galerie</a>
+        <a href="#tournois" onClick="{{ closeMenu }}" style="color:#fff">Tournois</a>
+        <a href="#partenaires" onClick="{{ closeMenu }}" style="color:#fff">Partenaires</a>
+        <a href="#faq" onClick="{{ closeMenu }}" style="color:#fff">FAQ</a>
+      </nav>
+      <a href="#contact" onClick="{{ closeMenu }}" style="margin-top:auto;height:58px;border-radius:999px;background:#99DAFF;color:#121822;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center">Nous contacter</a>
+    </div>
+  </sc-if>
+
+  <main>
+    <section id="accueil" data-screen-label="01 Hero" style="position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px clamp(20px,5vw,64px) 40px;box-sizing:border-box;max-width:1440px;margin:0 auto">
+      <div data-hero-inner="" style="position:relative;display:flex;flex-direction:column;gap:clamp(28px,4vw,48px);will-change:transform,opacity">
+        <div data-intro="" style="display:flex;flex-wrap:wrap;gap:8px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)">
+          <span style="color:var(--accentText)">● Basket 3x3</span><span>Strasbourg</span><span>Alsace</span><span>Loisir / Elite</span>
+        </div>
+        <h1 data-split="" style="margin:0;font-weight:900;text-transform:uppercase;line-height:.88;letter-spacing:-.035em;font-size:clamp(44px,10.4vw,172px);max-width:13ch;text-wrap:balance">
+          <span style="display:block;font-size:clamp(15px,1.5vw,22px);font-weight:700;letter-spacing:.1em;line-height:1;color:var(--accentText);margin-bottom:.9em">La Passe D –</span>
+          <span style="display:block">Tournois de basket <span style="background:#6EA4E6;color:#121822;padding:0 .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone">3x3</span></span>
+          <span style="display:block;color:transparent;-webkit-text-stroke:clamp(1.2px,.16vw,2.4px) var(--ink)">à Strasbourg</span>
+        </h1>
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px 48px">
+          <div data-intro="" style="display:flex;flex-direction:column;gap:24px;max-width:460px">
+            <p style="margin:0;font-size:clamp(19px,1.8vw,24px);font-weight:300;line-height:1.35;text-wrap:pretty">Organisateur de tournois de basket 3x3. <strong style="font-weight:800">L'accès à la culture basketball pour tous.</strong></p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <a href="#tournois" data-magnetic="" style="position:relative;overflow:hidden;display:flex;align-items:center;gap:10px;height:58px;padding:0 30px;border-radius:999px;background:#6EA4E6;color:#121822;font-weight:800;font-size:17px;transition:transform .35s cubic-bezier(.2,.8,.2,1)">Voir les tournois <span aria-hidden="true">→</span></a>
+              <a href="#association" data-magnetic="" style="position:relative;overflow:hidden;display:flex;align-items:center;height:58px;padding:0 30px;border-radius:999px;border:1.5px solid var(--ink);color:var(--ink);font-weight:700;font-size:17px;box-sizing:border-box;transition:transform .35s cubic-bezier(.2,.8,.2,1)">Découvrir l'asso</a>
+            </div>
+          </div>
+          <sc-if value="{{ hasNext }}" hint-placeholder-val="{{ true }}">
+            <div data-intro="" style="display:flex;flex-direction:column;gap:14px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)">Le prochain tournoi commence dans</div>
+              {{ countdown }}
+            </div>
+          </sc-if>
+          <sc-if value="{{ noNext }}" hint-placeholder-val="{{ false }}">
+            <a href="#alerte" data-intro="" style="display:flex;flex-direction:column;gap:10px;color:var(--ink)">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)">Prochain tournoi</span>
+              <span style="display:flex;align-items:center;gap:14px;font-size:clamp(40px,5.2vw,76px);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:.9"><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none;box-shadow:0 0 0 6px rgba(110,164,230,.25)"></span>Bientôt...</span>
+              <span style="font-size:15px;color:var(--ink2)">Active l'alerte pour être prévenu en premier →</span>
+            </a>
+          </sc-if>
+        </div>
+        <div aria-hidden="true" style="display:flex;align-items:center;gap:14px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2)"><span style="width:56px;height:1.5px;background:var(--ink2)"></span>Scroll</div>
+      </div>
+    </section>
+
+    <section id="association" data-sec="mission" data-screen-label="02 Mission" style="position:relative;padding:clamp(120px,16vw,220px) clamp(20px,5vw,64px) clamp(80px,10vw,140px);max-width:1440px;margin:0 auto;box-sizing:border-box">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(52px,9vw,148px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">Notre<br><span style="color:transparent;-webkit-text-stroke:clamp(1.2px,.15vw,2.2px) var(--ink)">mission</span></h2>
+        <p data-reveal="up" data-delay="120" style="margin:0;max-width:380px;font-size:clamp(20px,2vw,26px);font-weight:300;line-height:1.35">Plus qu'un sport, <strong style="font-weight:800">un état d'esprit.</strong></p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px;margin-top:clamp(48px,6vw,80px)">
+        <article data-reveal="up" style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(26px,3vw,40px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;box-sizing:border-box">
+          <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--ink2)"><span>01</span><span>TOURNOIS</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 style="margin:0;font-size:clamp(30px,3vw,40px);font-weight:800;line-height:1;letter-spacing:-.02em">Tournois 3x3</h3>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:var(--ink2)">Des événements compétitifs et conviviaux en plein cœur de la ville, pour tous les niveaux. Rejoins le grind.</p>
+          </div>
+        </article>
+        <article data-reveal="up" data-delay="120" style="background:#6EA4E6;color:#121822;border-radius:18px;padding:clamp(26px,3vw,40px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;box-sizing:border-box">
+          <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em"><span>02</span><span>CULTURE</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 style="margin:0;font-size:clamp(30px,3vw,40px);font-weight:800;line-height:1;letter-spacing:-.02em">Culture basket</h3>
+            <p style="margin:0;font-size:17px;line-height:1.55">Art, musique et lifestyle. On célèbre tout ce qui gravite autour de la balle orange.</p>
+          </div>
+        </article>
+        <article data-reveal="up" data-delay="240" style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(26px,3vw,40px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:40px;box-sizing:border-box">
+          <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--ink2)"><span>03</span><span>COMMUNAUTÉ</span></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <h3 style="margin:0;font-size:clamp(30px,3vw,40px);font-weight:800;line-height:1;letter-spacing:-.02em">Communauté</h3>
+            <p style="margin:0;font-size:17px;line-height:1.55;color:var(--ink2)">Créer du lien, échanger et partager la passion du basket avec une communauté soudée et bienveillante.</p>
+          </div>
+        </article>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));margin-top:clamp(56px,7vw,96px);border-top:1.5px solid var(--ink)">
+        <div data-reveal="up" style="padding:24px 0 0;display:flex;flex-direction:column;gap:6px"><span data-count="2" style="font-size:clamp(64px,7vw,104px);font-weight:900;line-height:.9;letter-spacing:-.03em">2</span><span style="font-size:16px;color:var(--ink2)">Student Nights organisées</span></div>
+        <div data-reveal="up" data-delay="100" style="padding:24px 0 0;display:flex;flex-direction:column;gap:6px"><span data-count="48" style="font-size:clamp(64px,7vw,104px);font-weight:900;line-height:.9;letter-spacing:-.03em">48</span><span style="font-size:16px;color:var(--ink2)">équipes inscrites</span></div>
+        <div data-reveal="up" data-delay="200" style="padding:24px 0 0;display:flex;flex-direction:column;gap:6px"><span data-count="96" style="font-size:clamp(64px,7vw,104px);font-weight:900;line-height:.9;letter-spacing:-.03em">96</span><span style="font-size:16px;color:var(--ink2)">matchs joués</span></div>
+        <div data-reveal="up" data-delay="300" style="padding:24px 0 0;display:flex;flex-direction:column;gap:6px"><span data-count="170" style="font-size:clamp(64px,7vw,104px);font-weight:900;line-height:.9;letter-spacing:-.03em">170</span><span style="font-size:16px;color:var(--ink2)">joueurs et joueuses</span></div>
+      </div>
+    </section>
+
+    <section id="galerie" data-gallery="" data-screen-label="03 Highlights" style="position:relative">
+      <div style="position:sticky;top:0;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:clamp(24px,4vh,48px)">
+        <div style="max-width:1440px;width:100%;margin:0 auto;padding:0 clamp(20px,5vw,64px);box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 40px">
+          <h2 style="margin:0;font-size:clamp(44px,7vw,112px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">Nos highlights</h2>
+          <p style="margin:0;font-size:18px;color:var(--ink2)">L'intensité du 3x3 en images.</p>
+        </div>
+        <div data-track="" style="display:flex;align-items:center;gap:clamp(14px,2vw,28px);width:max-content;padding:0 clamp(20px,5vw,64px);will-change:transform">
+          <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+            <div data-zoom="" data-reveal="mask" style="width:clamp(260px,40vw,600px);height:clamp(300px,56vh,600px);overflow:hidden;border-radius:6px;background:var(--bg2)">
+              <img data-par="" src="https://lapassed.fr/assets/images/gallery-1.jpg" alt="Dunk spectaculaire en plein match lors d'un tournoi de basket 3x3 La Passe D" loading="lazy" decoding="async" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);filter:contrast(1.12) saturate(1.05)">
+            </div>
+            <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">01 — LE DUNK</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+            <div data-zoom="" data-reveal="mask" style="width:clamp(220px,28vw,420px);height:clamp(340px,66vh,680px);overflow:hidden;border-radius:6px;background:var(--bg2)">
+              <img data-par="" src="https://lapassed.fr/assets/images/gallery-2.jpg" alt="Joueur s'envolant vers le panier avec ballon en main" loading="lazy" decoding="async" width="800" height="1200" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);filter:contrast(1.12) saturate(1.05)">
+            </div>
+            <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">02 — L'ENVOL</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+            <div data-zoom="" data-reveal="mask" style="width:clamp(260px,40vw,600px);height:clamp(280px,48vh,520px);overflow:hidden;border-radius:6px;background:var(--bg2)">
+              <img data-par="" src="https://lapassed.fr/assets/images/gallery-3.jpg" alt="Tir en suspension décisif au-dessus de la défense adverse" loading="lazy" decoding="async" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);filter:contrast(1.12) saturate(1.05)">
+            </div>
+            <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">03 — LE SHOOT</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+            <div data-zoom="" data-reveal="mask" style="width:clamp(240px,32vw,480px);height:clamp(320px,60vh,620px);overflow:hidden;border-radius:6px;background:var(--bg2)">
+              <img data-par="" src="https://lapassed.fr/assets/images/gallery-4.jpg" alt="Célébration chaleureuse et sourires entre coéquipiers sur le terrain" loading="lazy" decoding="async" width="900" height="1200" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);filter:contrast(1.12) saturate(1.05)">
+            </div>
+            <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">04 — LA TEAM</figcaption>
+          </figure>
+          <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
+            <div data-zoom="" data-reveal="mask" style="width:clamp(260px,40vw,600px);height:clamp(300px,56vh,600px);overflow:hidden;border-radius:6px;background:var(--bg2)">
+              <img data-par="" src="https://lapassed.fr/assets/images/gallery-5.jpg" alt="Joueur de basket 3x3 posant avec le ballon de streetball" loading="lazy" decoding="async" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18);filter:contrast(1.12) saturate(1.05)">
+            </div>
+            <figcaption style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">05 — STREETBALL</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="tournois" data-sec="events" data-screen-label="04 Événements" style="position:relative;padding:clamp(100px,12vw,180px) clamp(20px,5vw,64px);max-width:1440px;margin:0 auto;box-sizing:border-box">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(48px,8vw,128px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">Prochains<br>événements</h2>
+        <p data-reveal="up" data-delay="120" style="margin:0;max-width:360px;font-size:17px;line-height:1.5;color:var(--ink2)">Survole une carte (ou touche-la sur mobile) pour voir l'envers du décor.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:16px;margin-top:clamp(40px,5vw,72px)">
+        <sc-if value="{{ hasNext }}" hint-placeholder-val="{{ true }}">
+          <div data-reveal="up" data-flip="" onMouseEnter="{{ cards.up.on }}" onMouseLeave="{{ cards.up.off }}" onClick="{{ cards.up.tap }}" style="height:420px;perspective:1400px">
+            <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform:{{ cards.up.rot }}">
+              <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#6EA4E6;color:#121822;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+                <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em">À VENIR</span><span style="width:10px;height:10px;border-radius:50%;background:#121822"></span></div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="font-size:88px;font-weight:900;line-height:.8;letter-spacing:-.04em">{{ nextDay }}</div>
+                  <div style="font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:.06em">{{ nextMonth }}</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px">
+                  <h3 style="margin:0;font-size:30px;font-weight:900;text-transform:uppercase;line-height:.95">{{ nextTitle }}</h3>
+                  <div style="font-size:15px">avec {{ nextPartner }}</div>
+                </div>
+              </div>
+              <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#121822;color:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#99DAFF">INFOS</span>
+                <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:18px">
+                  <li>Catégories Loisir et Elite</li><li>Équipes de 3 ou 4</li><li>Places limitées</li>
+                </ul>
+                <a href="{{ nextLink }}" data-magnetic="" style="position:relative;overflow:hidden;height:56px;border-radius:999px;background:#99DAFF;color:#121822;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)">S'inscrire →</a>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ noNext }}" hint-placeholder-val="{{ false }}">
+          <div data-reveal="up" style="height:420px;background:#6EA4E6;color:#121822;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+            <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em">PROCHAIN TOURNOI</span><span style="width:10px;height:10px;border-radius:50%;background:#121822"></span></div>
+            <div style="font-size:clamp(56px,6vw,80px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.85">Bientôt...</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <p style="margin:0;font-size:16px;line-height:1.5">La date n'est pas encore annoncée. Sois le premier au courant.</p>
+              <a href="#alerte" data-magnetic="" style="position:relative;overflow:hidden;height:56px;border-radius:999px;background:#121822;color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)">M'alerter →</a>
+            </div>
+          </div>
+        </sc-if>
+        <div data-reveal="up" data-delay="80" data-flip="" onMouseEnter="{{ cards.sv.on }}" onMouseLeave="{{ cards.sv.off }}" onClick="{{ cards.sv.tap }}" style="height:420px;perspective:1400px">
+          <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform:{{ cards.sv.rot }}">
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+              <span style="align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;padding:6px 12px;border-radius:999px;border:1px solid var(--ink)">SONDAGE</span>
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <h3 style="margin:0;font-size:30px;font-weight:900;text-transform:uppercase;line-height:.95">Aide-nous à préparer le prochain tournoi !</h3>
+                <p style="margin:0;font-size:16px;line-height:1.5;color:var(--ink2)">On prépare notre premier grand tournoi 3x3 à Strasbourg. Donne ton avis en 3 minutes.</p>
+              </div>
+            </div>
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#121822;color:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#99DAFF">3 MINUTES</span>
+              <p style="margin:0;font-size:22px;font-weight:300;line-height:1.35">Format, horaires, catégories, ambiance : <strong style="font-weight:800">ton avis construit l'événement idéal.</strong></p>
+              <a href="https://forms.gle/GD2G6Wc5VQ66uXCr9" target="_blank" rel="noopener" data-magnetic="" style="position:relative;overflow:hidden;height:56px;border-radius:999px;background:#99DAFF;color:#121822;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)">Donner mon avis →</a>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="up" data-delay="160" data-flip="" onMouseEnter="{{ cards.e1.on }}" onMouseLeave="{{ cards.e1.off }}" onClick="{{ cards.e1.tap }}" style="height:420px;perspective:1400px">
+          <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform:{{ cards.e1.rot }}">
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box">
+              <div style="height:180px;flex:none;background:var(--bg2);position:relative"><img src="https://lapassed.fr/assets/images/gallery-3.jpg" alt="Student Night Easter, tournoi 3x3 au Basket Center" loading="lazy" decoding="async" width="600" height="360" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.3)"><span style="position:absolute;top:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;padding:6px 12px;border-radius:999px;background:#121822;color:#fff">PASSÉ</span></div>
+              <div style="padding:24px 28px 28px;display:flex;flex-direction:column;justify-content:space-between;flex:1">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">2 AVRIL 2026</div>
+                <div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-size:30px;font-weight:900;text-transform:uppercase;line-height:.95">Student Night Easter</h3><div style="font-size:15px;color:var(--ink2)">avec Le Basket Center</div></div>
+              </div>
+            </div>
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#121822;color:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#99DAFF">STUDENT NIGHT · 02.04.26</span>
+              <p style="margin:0;font-size:22px;font-weight:300;line-height:1.35">Merci à toutes les équipes. <strong style="font-weight:800">Retrouve les meilleurs moments en images.</strong></p>
+              <a href="#galerie" style="height:56px;border-radius:999px;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center">Voir la galerie</a>
+            </div>
+          </div>
+        </div>
+        <div data-reveal="up" data-delay="240" data-flip="" onMouseEnter="{{ cards.e2.on }}" onMouseLeave="{{ cards.e2.off }}" onClick="{{ cards.e2.tap }}" style="height:420px;perspective:1400px">
+          <div style="position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform:{{ cards.e2.rot }}">
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-sizing:border-box">
+              <div style="height:180px;flex:none;background:var(--bg2);position:relative"><img src="https://lapassed.fr/assets/images/gallery-5.jpg" alt="Student Night: The Last Dance, tournoi 3x3 au Basket Center" loading="lazy" decoding="async" width="600" height="360" style="width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.3)"><span style="position:absolute;top:16px;right:16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;padding:6px 12px;border-radius:999px;background:#121822;color:#fff">PASSÉ</span></div>
+              <div style="padding:24px 28px 28px;display:flex;flex-direction:column;justify-content:space-between;flex:1">
+                <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;color:var(--ink2)">20 MAI 2026</div>
+                <div style="display:flex;flex-direction:column;gap:6px"><h3 style="margin:0;font-size:30px;font-weight:900;text-transform:uppercase;line-height:.95">Student Night: The Last Dance</h3><div style="font-size:15px;color:var(--ink2)">avec Le Basket Center</div></div>
+              </div>
+            </div>
+            <div style="position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:rotateY(180deg);background:#121822;color:#fff;border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:#99DAFF">STUDENT NIGHT · 20.05.26</span>
+              <p style="margin:0;font-size:22px;font-weight:300;line-height:1.35">La dernière de la saison. <strong style="font-weight:800">Rendez-vous au prochain tip-off.</strong></p>
+              <a href="#alerte" style="height:56px;border-radius:999px;border:1.5px solid rgba(255,255,255,.5);color:#fff;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center">Être alerté</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="format" data-screen-label="05 Format 3x3" style="position:relative;background:#6EA4E6;color:#121822;overflow:hidden">
+      <div style="max-width:1440px;margin:0 auto;padding:clamp(90px,11vw,160px) clamp(20px,5vw,64px);box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(48px,6vw,96px);align-items:center">
+        <div style="display:flex;flex-direction:column;gap:32px">
+          <h2 data-reveal="up" style="margin:0;font-size:clamp(48px,7.4vw,120px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">Le 3x3<br>en bref</h2>
+          <svg data-draw-on="" viewBox="0 0 600 440" role="img" aria-label="Schéma d'un demi-terrain de basket 3x3 avec deux équipes de trois joueurs" style="width:100%;height:auto;overflow:visible" fill="none" stroke="#121822" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path pathLength="1" d="M10 10 H590 V430 H10 Z"></path>
+            <path pathLength="1" d="M202 10 V242 H398 V10"></path>
+            <path pathLength="1" d="M228 242 A72 72 0 0 0 372 242"></path>
+            <path pathLength="1" d="M46 10 V165 A270 270 0 0 0 554 165 V10"></path>
+            <path pathLength="1" d="M250 73 A50 50 0 0 0 350 73"></path>
+            <path pathLength="1" d="M270 58 H330"></path>
+            <path pathLength="1" d="M291 73 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"></path>
+            <circle data-pop="" cx="300" cy="300" r="15" fill="#121822" stroke="none"></circle>
+            <circle data-pop="" cx="140" cy="230" r="15" fill="#121822" stroke="none"></circle>
+            <circle data-pop="" cx="470" cy="210" r="15" fill="#121822" stroke="none"></circle>
+            <circle data-pop="" cx="300" cy="200" r="13" fill="#FFFFFF" stroke="#121822"></circle>
+            <circle data-pop="" cx="180" cy="150" r="13" fill="#FFFFFF" stroke="#121822"></circle>
+            <circle data-pop="" cx="430" cy="140" r="13" fill="#FFFFFF" stroke="#121822"></circle>
+          </svg>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div data-reveal="up" style="display:grid;grid-template-columns:minmax(0,clamp(120px,14vw,200px)) 1fr;align-items:baseline;gap:20px;padding:22px 0;border-top:2px solid #121822"><span data-count="3" style="font-size:clamp(64px,7vw,108px);font-weight:900;line-height:.9;letter-spacing:-.03em">3</span><span style="font-size:clamp(20px,2vw,26px);font-weight:700">contre 3, plus un remplaçant si tu veux</span></div>
+          <div data-reveal="up" data-delay="100" style="display:grid;grid-template-columns:minmax(0,clamp(120px,14vw,200px)) 1fr;align-items:baseline;gap:20px;padding:22px 0;border-top:2px solid #121822"><span style="font-size:clamp(64px,7vw,108px);font-weight:900;line-height:.9;letter-spacing:-.03em">½</span><span style="font-size:clamp(20px,2vw,26px);font-weight:700">terrain, pour un jeu rapide et intense</span></div>
+          <div data-reveal="up" data-delay="200" style="display:grid;grid-template-columns:minmax(0,clamp(120px,14vw,200px)) 1fr;align-items:baseline;gap:20px;padding:22px 0;border-top:2px solid #121822"><span data-count="1" style="font-size:clamp(64px,7vw,108px);font-weight:900;line-height:.9;letter-spacing:-.03em">1</span><span style="font-size:clamp(20px,2vw,26px);font-weight:700">seul panier, aucune pause</span></div>
+          <div data-reveal="up" data-delay="300" style="display:grid;grid-template-columns:minmax(0,clamp(120px,14vw,200px)) 1fr;align-items:baseline;gap:20px;padding:22px 0;border-top:2px solid #121822;border-bottom:2px solid #121822"><span data-count="2021" data-from="1990" style="font-size:clamp(64px,7vw,108px);font-weight:900;line-height:.9;letter-spacing:-.03em">2021</span><span style="font-size:clamp(20px,2vw,26px);font-weight:700">discipline olympique depuis Tokyo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partenaires" data-screen-label="06 Partenaires" style="position:relative;padding:clamp(100px,12vw,170px) 0 clamp(60px,8vw,100px)">
+      <div style="max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,64px);box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px 48px">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(48px,8vw,128px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">Partenaires</h2>
+        <p data-reveal="up" data-delay="120" style="margin:0;max-width:380px;font-size:17px;line-height:1.5;color:var(--ink2)">Ils font vivre le 3x3 à Strasbourg avec nous.</p>
+      </div>
+      <div style="margin-top:clamp(40px,5vw,64px);border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;background:var(--bg)">
+        <div data-marquee="" style="display:flex;width:max-content;will-change:transform">
+          <div style="display:flex;align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(22px,3vw,36px) clamp(16px,2.5vw,36px);font-size:clamp(36px,5vw,72px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;white-space:nowrap">
+            <span>Le Basket Center</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span style="color:transparent;-webkit-text-stroke:1.5px var(--ink)">Ta marque ici</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span>Le Basket Center</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span style="color:transparent;-webkit-text-stroke:1.5px var(--ink)">Ta marque ici</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+          </div>
+          <div aria-hidden="true" style="display:flex;align-items:center;gap:clamp(32px,5vw,72px);padding:clamp(22px,3vw,36px) clamp(16px,2.5vw,36px);font-size:clamp(36px,5vw,72px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;white-space:nowrap">
+            <span>Le Basket Center</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span style="color:transparent;-webkit-text-stroke:1.5px var(--ink)">Ta marque ici</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span>Le Basket Center</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+            <span style="color:transparent;-webkit-text-stroke:1.5px var(--ink)">Ta marque ici</span><span style="width:14px;height:14px;border-radius:50%;background:#6EA4E6;flex:none"></span>
+          </div>
+        </div>
+      </div>
+      <div style="max-width:1440px;margin:clamp(40px,5vw,64px) auto 0;padding:0 clamp(20px,5vw,64px);box-sizing:border-box">
+        <div data-reveal="up" style="background:var(--strong);color:var(--onStrong);border-radius:18px;padding:clamp(28px,4vw,56px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px 48px">
+          <div style="display:flex;flex-direction:column;gap:10px;max-width:640px">
+            <h3 style="margin:0;font-size:clamp(30px,3.6vw,52px);font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:-.02em">Devenir partenaire</h3>
+            <p style="margin:0;font-size:17px;line-height:1.5">Associe ta marque à la scène 3x3 strasbourgeoise et touche une communauté jeune, active et passionnée.</p>
+          </div>
+          <a href="mailto:lapassed52@gmail.com?subject=Devenir%20partenaire%20de%20La%20Passe%20D" data-magnetic="" style="position:relative;overflow:hidden;height:58px;padding:0 30px;border-radius:999px;background:#6EA4E6;color:#121822;font-weight:800;font-size:17px;display:flex;align-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)">Écris-nous →</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" data-screen-label="07 FAQ" style="position:relative;padding:clamp(80px,10vw,150px) clamp(20px,5vw,64px);max-width:1440px;margin:0 auto;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px clamp(40px,6vw,96px);align-items:start">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(48px,8vw,128px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.86">FAQ</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;font-size:19px;line-height:1.5;color:var(--ink2);max-width:360px">Tout ce qu'il faut savoir avant de fouler le terrain.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:1.5px solid var(--ink)">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <div style="border-bottom:1px solid var(--line)">
+            <h3 style="margin:0">
+              <button type="button" onClick="{{ f.toggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;background:none;border:none;color:var(--ink);font-family:inherit;font-size:clamp(19px,1.7vw,23px);font-weight:700;text-align:left;line-height:1.3">
+                <span>{{ f.q }}</span>
+                <span aria-hidden="true" style="position:relative;flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ink)">
+                  <span style="position:absolute;left:10px;right:10px;top:50%;height:2px;margin-top:-1px;background:var(--ink)"></span>
+                  <span style="position:absolute;top:10px;bottom:10px;left:50%;width:2px;margin-left:-1px;background:var(--ink);transition:transform .4s cubic-bezier(.2,.8,.2,1);transform:{{ f.rot }}"></span>
+                </span>
+              </button>
+            </h3>
+            <div style="display:grid;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1);grid-template-rows:{{ f.rows }}">
+              <div style="overflow:hidden"><p style="margin:0;padding:0 56px 26px 0;font-size:17px;line-height:1.6;color:var(--ink2);text-wrap:pretty">{{ f.a }}</p></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="alerte" data-screen-label="08 Alerte email" style="position:relative;padding:clamp(80px,10vw,150px) clamp(20px,5vw,64px) clamp(100px,12vw,180px);max-width:1440px;margin:0 auto;box-sizing:border-box;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <h2 data-reveal="up" style="margin:0;font-size:clamp(44px,6.6vw,104px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;line-height:.88;text-wrap:balance">Ne manque pas le prochain tournoi !</h2>
+        <p data-reveal="up" data-delay="100" style="margin:0;font-size:19px;line-height:1.5;color:var(--ink2);max-width:480px">Inscris-toi à l'alerte email et sois le premier averti de l'ouverture des inscriptions.</p>
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submit }}" data-reveal="up" data-delay="200" style="display:flex;flex-wrap:wrap;gap:10px;max-width:560px">
+            <label for="lpd-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Ton adresse email</label>
+            <input id="lpd-email" type="email" required="" autocomplete="email" placeholder="ton@email.com" value="{{ email }}" onChange="{{ setEmail }}" style="flex:1 1 240px;min-width:0;height:60px;padding:0 24px;border-radius:999px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font-family:inherit;font-size:17px;box-sizing:border-box;outline-color:#6EA4E6">
+            <button type="submit" data-magnetic="" style="position:relative;overflow:hidden;flex:0 0 auto;height:60px;padding:0 32px;border-radius:999px;border:none;background:var(--strong);color:var(--onStrong);font-family:inherit;font-weight:800;font-size:17px;transition:transform .35s cubic-bezier(.2,.8,.2,1)">M'alerter</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display:flex;align-items:center;gap:14px;padding:18px 24px;border-radius:999px;background:#99DAFF;color:#121822;font-weight:700;font-size:17px;max-width:560px;box-sizing:border-box">
+            <span style="width:12px;height:12px;border-radius:50%;background:#121822;flex:none"></span>C'est noté ! Tu seras le premier averti.
+          </div>
+        </sc-if>
+        <p style="margin:0;font-size:14px;color:var(--ink2)">Tes données ne seront jamais revendues et servent uniquement à t'avertir de nos événements.</p>
+      </div>
+      <div aria-hidden="true" style="display:flex;justify-content:center;align-items:center;position:relative;min-height:340px">
+        <div data-hoop="" style="position:relative;width:min(300px,70vw);display:flex;flex-direction:column;align-items:center">
+          <div style="width:100%;aspect-ratio:1.6;border:5px solid var(--ink);border-radius:8px;box-sizing:border-box;display:flex;align-items:flex-end;justify-content:center;padding-bottom:12%;background:var(--card)">
+            <div style="width:40%;height:38%;border:4px solid var(--ink);box-sizing:border-box"></div>
+          </div>
+          <div style="width:10px;height:18px;background:var(--ink)"></div>
+          <div data-rim="" style="position:relative;z-index:36;width:46%;height:12px;border-radius:6px;background:#DE6A24;box-shadow:0 3px 0 #9E410E"></div>
+          <div data-net="" style="position:relative;z-index:35;width:42%;height:96px;margin-top:-2px;transform-origin:50% 0;clip-path:polygon(0 0,100% 0,80% 100%,20% 100%);background:repeating-linear-gradient(62deg,var(--ink) 0 2px,transparent 2px 14px),repeating-linear-gradient(-62deg,var(--ink) 0 2px,transparent 2px 14px);opacity:.85"></div>
+          <div data-swish="" style="position:absolute;left:100%;top:46%;margin-left:-10px;font-size:clamp(28px,3vw,40px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;color:var(--accentText);opacity:0;white-space:nowrap">Swish.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" data-screen-label="09 Footer" style="position:relative;background:#121822;color:#fff;overflow:hidden">
+    <div style="max-width:1440px;margin:0 auto;padding:clamp(64px,8vw,110px) clamp(20px,5vw,64px) 32px;box-sizing:border-box">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:48px">
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <img src="https://lapassed.fr/assets/images/logo%20blanc.png" alt="La Passe D" loading="lazy" width="150" height="60" style="height:56px;width:auto;align-self:flex-start">
+          <p style="margin:0;font-size:16px;line-height:1.5;color:#AAB6C8;max-width:260px">Organisation de tournois de basket 3x3 à Strasbourg et en Alsace.</p>
+        </div>
+        <nav aria-label="Liens rapides" style="display:flex;flex-direction:column;gap:12px">
+          <h4 style="margin:0 0 6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;color:#99DAFF">LIENS RAPIDES</h4>
+          <a href="#association" style="color:#fff;font-size:17px">L'Association</a>
+          <a href="#tournois" style="color:#fff;font-size:17px">Tournois</a>
+          <a href="#faq" style="color:#fff;font-size:17px">FAQ</a>
+          <a href="https://forms.gle/GD2G6Wc5VQ66uXCr9" target="_blank" rel="noopener" style="color:#fff;font-size:17px">Avis tournoi 3x3</a>
+        </nav>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h4 style="margin:0 0 6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;color:#99DAFF">CONTACT</h4>
+          <a href="mailto:lapassed52@gmail.com" style="color:#fff;font-size:17px">lapassed52@gmail.com</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <h4 style="margin:0 0 6px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;color:#99DAFF">RÉSEAUX</h4>
+          <a href="https://www.instagram.com/lapassed_off" target="_blank" rel="noopener" style="color:#fff;font-size:17px">Instagram · @lapassed_off</a>
+          <a href="https://www.tiktok.com/@lapassed_off" target="_blank" rel="noopener" style="color:#fff;font-size:17px">TikTok · @lapassed_off</a>
+          <a href="https://www.linkedin.com/company/la-passe-d-off" target="_blank" rel="noopener" style="color:#fff;font-size:17px">LinkedIn · la-passe-d-off</a>
+        </div>
+      </div>
+      <div aria-hidden="true" data-reveal="up" style="margin-top:clamp(56px,8vw,110px);font-size:clamp(64px,17vw,280px);font-weight:900;text-transform:uppercase;letter-spacing:-.05em;line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(153,218,255,.55);white-space:nowrap">La Passe D</div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);font-size:14px;color:#AAB6C8">
+        <span>© 2026 La Passe D. Tous droits réservés.</span>
+        <a href="#accueil" style="color:#fff">Retour en haut ↑</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;nextDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prochain tournoi&quot;},&quot;nextTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tournoi 3x3 Strasbourg&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prochain tournoi&quot;},&quot;nextPartner&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Le Basket Center&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prochain tournoi&quot;},&quot;nextLink&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;#tournois&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prochain tournoi&quot;},&quot;ballJourney&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animations&quot;},&quot;customCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Animations&quot;}}">
+class Component extends DCLogic {
+  state = { now: Date.now(), theme: 'light', mob: false, menu: false, flip: {}, faq: 0, email: '', sent: false };
+  rootRef = React.createRef();
+
+  componentDidMount() {
+    const root = this.rootRef.current; if (!root) return;
+    this.q = s => root.querySelector(s); this.qa = s => Array.from(root.querySelectorAll(s));
+    this.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.fine = matchMedia('(pointer: fine)').matches;
+    let saved = null; try { saved = localStorage.getItem('lpd-theme'); } catch (e) {}
+    this.setTheme(saved || 'dark', false);
+    this.setState({ mob: innerWidth < 900 });
+    this.timer = setInterval(() => this.setState({ now: Date.now() }), 1000);
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.update(); }); };
+    this.onResize = () => this.setState({ mob: innerWidth < 900 }, () => { this.measure(); this.update(); });
+    addEventListener('scroll', this.onScroll, { passive: true });
+    addEventListener('resize', this.onResize);
+    this.split(); this.reveals(); this.counters(); this.draws(); this.pointer(root); this.marquee(); this.intro();
+    const re = () => { this.measure(); this.update(); };
+    requestAnimationFrame(re);
+    if (document.fonts) document.fonts.ready.then(re);
+    addEventListener('load', re);
+    if ('ResizeObserver' in window) { this.ro = new ResizeObserver(() => { clearTimeout(this.roT); this.roT = setTimeout(re, 80); }); this.ro.observe(root); }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer); cancelAnimationFrame(this.curRaf);
+    removeEventListener('scroll', this.onScroll); removeEventListener('resize', this.onResize);
+    if (this.ro) this.ro.disconnect();
+    document.documentElement.classList.remove('lpd-cursor');
+  }
+
+  setTheme(t, save = true) {
+    document.documentElement.dataset.theme = t;
+    this.setState({ theme: t });
+    if (save) try { localStorage.setItem('lpd-theme', t); } catch (e) {}
+  }
+
+  measure() {
+    const W = innerWidth, H = innerHeight, sy = scrollY, mob = W < 900;
+    const top = el => el.getBoundingClientRect().top + sy;
+    this.ball = this.q('[data-ball]'); this.spin = this.q('[data-ball-spin]'); this.nav = this.q('[data-nav]');
+    this.gal = this.q('[data-gallery]'); this.track = this.q('[data-track]'); this.zooms = this.qa('[data-zoom]');
+    this.court = this.qa('[data-bgcourt] path'); this.heroInner = this.q('[data-hero-inner]');
+    if (this.gal && this.track) {
+      if (this.reduced) { this.galLen = 0; this.track.parentElement.style.position = 'relative'; this.track.parentElement.style.height = 'auto'; this.track.parentElement.style.padding = '80px 0'; this.track.style.width = 'auto'; this.track.style.overflowX = 'auto'; }
+      else { this.galLen = Math.max(0, this.track.offsetWidth - W); const h = Math.round(H + this.galLen) + 'px'; if (this.gal.style.height !== h) this.gal.style.height = h; }
+      this.galTop = top(this.gal);
+    }
+    const mission = this.q('[data-sec="mission"]'), events = this.q('[data-sec="events"]'), rim = this.q('[data-rim]');
+    const maxY = document.documentElement.scrollHeight - H;
+    const s0 = mob ? Math.min(W * 0.52, 260) : Math.min(W * 0.32, 470);
+    const k0 = { y: 0, x: mob ? W * 0.78 : W * 0.75, cy: mob ? H * 0.27 : H * 0.42, s: s0, o: 1 };
+    const journey = this.props.ballJourney ?? true;
+    let K;
+    if (this.reduced || !journey || !mission || !rim || !events) K = [k0, { ...k0, y: H * 0.8, o: 0 }];
+    else {
+      const big = Math.hypot(W, H) * 1.35, g = mob ? 28 : 56, gs = mob ? 34 : 54;
+      const mt = top(mission), mb = mt + mission.offsetHeight;
+      const r = rim.getBoundingClientRect(), rx = r.left + r.width / 2, ry = r.top + sy + r.height / 2, bs = r.width * 0.74;
+      const k7 = Math.min(ry - H * 0.55, maxY - 200);
+      K = [k0,
+        { y: mt - H * 0.45, x: W * 0.5, cy: H * 0.5, s: big, o: 0.08 },
+        { y: mb - H * 1.05, x: W * 0.5, cy: H * 0.5, s: big, o: 0.08 },
+        { y: this.galTop, x: g, cy: H - g - 12, s: gs, o: 1 },
+        { y: this.galTop + this.galLen, x: W - g, cy: H - g - 12, s: gs, o: 1, ex: 'lin' },
+        { y: top(events), x: W - g * 0.8, cy: H * 0.62, s: gs, o: 1, drib: 1 },
+        { y: k7 - 320, x: rx - (mob ? 120 : 240), doc: ry - 280, s: bs, o: 1 },
+        { y: k7, x: rx, doc: ry - bs * 0.2, s: bs, o: 1, ex: 'out', ey: 'in' },
+        { y: k7 + 180, x: rx, doc: ry + bs * 1.05, s: bs * 0.96, o: 1, ey: 'in' }];
+      for (let i = 1; i < K.length; i++) if (K[i].y <= K[i - 1].y) K[i].y = K[i - 1].y + 1;
+      this.k7 = K[7].y;
+    }
+    this.K = K;
+  }
+
+  update() {
+    const y = scrollY, W = innerWidth, H = innerHeight, K = this.K;
+    if (!K || !this.ball) return;
+    const cl = v => Math.min(1, Math.max(0, v));
+    const E = { io: t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2, in: t => t * t, out: t => 1 - (1 - t) * (1 - t), lin: t => t };
+    let i = 0; while (i < K.length - 2 && y > K[i + 1].y) i++;
+    const a = K[i], b = K[i + 1] || a, t = b.y === a.y ? 1 : cl((y - a.y) / (b.y - a.y));
+    const ex = E[b.ex || 'io'](t), ey = E[b.ey || 'io'](t), eg = E.io(t);
+    const ca = a.doc != null ? a.doc - y : a.cy, cb = b.doc != null ? b.doc - y : b.cy;
+    const x = a.x + (b.x - a.x) * ex; let cy = ca + (cb - ca) * ey;
+    const s = a.s + (b.s - a.s) * eg, o = a.o + (b.o - a.o) * eg;
+    if (a.drib) cy -= Math.abs(Math.sin((y - a.y) / 85)) * (W < 900 ? 46 : 84) * Math.sin(Math.PI * t);
+    this.ball.style.transform = `translate3d(${x - 100}px,${cy - 100}px,0) scale(${s / 200})`;
+    this.ball.style.opacity = o;
+    this.ball.style.zIndex = (s > 320 || y < H * 0.85) ? -1 : 30;
+    if (this.spin) this.spin.style.transform = `rotate(${y * 0.32}deg)`;
+    if (this.k7 != null && this.lastY != null && this.lastY < this.k7 && y >= this.k7) this.swish();
+    this.lastY = y;
+
+    const docH = document.documentElement.scrollHeight - H, p = docH > 0 ? y / docH : 0, n = this.court.length;
+    this.court.forEach((el, j) => { el.style.strokeDashoffset = this.reduced ? 0 : 1 - cl((p * 1.15 - j / n * 0.55) / 0.3); });
+
+    if (this.nav) { const solid = y > 30; if (solid !== this.navSolid) { this.navSolid = solid; this.nav.style.backgroundColor = solid ? 'var(--navbg)' : 'transparent'; this.nav.style.backdropFilter = this.nav.style.webkitBackdropFilter = solid ? 'blur(14px)' : 'none'; this.nav.style.boxShadow = solid ? '0 1px 0 var(--line)' : 'none'; } }
+
+    if (!this.reduced && this.heroInner) { const hp = cl(y / (H * 0.9)); this.heroInner.style.transform = `translate3d(0,${y * 0.18}px,0)`; this.heroInner.style.opacity = 1 - hp * 0.9; }
+
+    if (!this.reduced && this.track && this.galLen > 0) {
+      const gp = cl((y - this.galTop) / this.galLen);
+      this.track.style.transform = `translate3d(${-gp * this.galLen}px,0,0)`;
+      this.zooms.forEach(z => {
+        const r = z.getBoundingClientRect(), off = (r.left + r.width / 2 - W / 2) / W;
+        z.style.transform = `scale(${1 - Math.min(Math.abs(off), 1) * 0.08})`;
+        const img = z.firstElementChild; if (img) img.style.transform = `translate3d(${-off * 9}%,0,0) scale(1.18)`;
+      });
+    }
+  }
+
+  swish() {
+    const net = this.q('[data-net]'), sw = this.q('[data-swish]');
+    if (net && net.animate) net.animate([{ transform: 'scale(1,1)' }, { transform: 'scale(.86,1.28)' }, { transform: 'scale(1.04,.94)' }, { transform: 'scale(1,1)' }], { duration: 650, easing: 'cubic-bezier(.2,.8,.2,1)' });
+    if (sw && sw.animate) sw.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none', offset: .25 }, { opacity: 1, offset: .75 }, { opacity: 0, transform: 'translateY(-12px)' }], { duration: 1600, easing: 'ease-out' });
+  }
+
+  split() {
+    if (this.reduced) return;
+    let n = 0;
+    this.qa('[data-split]').forEach(el => {
+      el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+      const walk = node => Array.from(node.childNodes).forEach(c => {
+        if (c.nodeType === 1) return walk(c);
+        if (c.nodeType !== 3 || !c.textContent.trim()) return;
+        const frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(w => {
+          if (!w) return;
+          if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const ws = document.createElement('span'); ws.style.cssText = 'display:inline-block;white-space:nowrap'; ws.setAttribute('aria-hidden', 'true');
+          for (const ch of w) {
+            const l = document.createElement('span'); l.textContent = ch; l.style.display = 'inline-block'; ws.appendChild(l);
+            l.animate([{ opacity: 0, transform: 'translateY(.55em) rotate(6deg)', filter: 'blur(6px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }], { duration: 760, delay: 250 + n++ * 26, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both' });
+          }
+          frag.appendChild(ws);
+        });
+        c.replaceWith(frag);
+      });
+      walk(el);
+    });
+  }
+
+  reveals() {
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    const from = { up: { opacity: 0, transform: 'translateY(56px)' }, mask: { clipPath: 'inset(100% 0 0 0)' } };
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return; const el = e.target; io.unobserve(el);
+      const k = el.dataset.reveal === 'mask' ? 'mask' : 'up', f = from[k];
+      const to = k === 'mask' ? { clipPath: 'inset(0% 0 0 0)' } : { opacity: 1, transform: 'none' };
+      el.animate([f, to], { duration: k === 'mask' ? 1200 : 900, delay: +(el.dataset.delay || 0), easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
+      Object.keys(f).forEach(p => el.style[p] = '');
+    }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    this.qa('[data-reveal]').forEach(el => {
+      if (el.getBoundingClientRect().top < innerHeight * 0.92) return;
+      Object.assign(el.style, el.dataset.reveal === 'mask' ? from.mask : from.up);
+      io.observe(el);
+    });
+  }
+
+  counters() {
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    this.qa('[data-count]').forEach(el => {
+      const to = +el.dataset.count, fr = +(el.dataset.from || 0);
+      el.textContent = String(fr);
+      const io = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return; io.disconnect();
+        const t0 = performance.now(), d = 1700;
+        const step = now => { const p = Math.min(1, (now - t0) / d); el.textContent = String(Math.round(fr + (to - fr) * (1 - Math.pow(1 - p, 4)))); if (p < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      }, { threshold: 0.5 });
+      io.observe(el);
+    });
+  }
+
+  draws() {
+    if (this.reduced || !('IntersectionObserver' in window)) return;
+    this.qa('[data-draw-on]').forEach(svg => {
+      const paths = Array.from(svg.querySelectorAll('path')), dots = Array.from(svg.querySelectorAll('[data-pop]'));
+      paths.forEach(p => { p.style.strokeDasharray = '1'; p.style.strokeDashoffset = '1'; });
+      dots.forEach(d => { d.style.transformBox = 'fill-box'; d.style.transformOrigin = 'center'; d.style.opacity = '0'; });
+      const io = new IntersectionObserver(([e]) => {
+        if (!e.isIntersecting) return; io.disconnect();
+        paths.forEach((p, i) => p.animate([{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: 1300, delay: i * 140, easing: 'cubic-bezier(.6,0,.2,1)', fill: 'forwards' }));
+        dots.forEach((d, i) => d.animate([{ opacity: 0, transform: 'scale(0)' }, { opacity: 1, transform: 'scale(1.25)', offset: .7 }, { opacity: 1, transform: 'scale(1)' }], { duration: 600, delay: 1100 + i * 110, easing: 'ease-out', fill: 'forwards' }));
+      }, { threshold: 0.35 });
+      io.observe(svg);
+    });
+  }
+
+  pointer(root) {
+    root.addEventListener('pointerdown', e => {
+      const el = e.target.closest('[data-magnetic]'); if (!el || this.reduced) return;
+      const r = el.getBoundingClientRect(), sz = Math.max(r.width, r.height) * 2.2, s = document.createElement('span');
+      s.style.cssText = `position:absolute;left:${e.clientX - r.left - sz / 2}px;top:${e.clientY - r.top - sz / 2}px;width:${sz}px;height:${sz}px;border-radius:50%;background:currentColor;opacity:.25;pointer-events:none`;
+      el.appendChild(s);
+      s.animate([{ transform: 'scale(0)', opacity: .3 }, { transform: 'scale(1)', opacity: 0 }], { duration: 650, easing: 'ease-out' }).onfinish = () => s.remove();
+    });
+    if (!this.fine || this.reduced) return;
+    root.addEventListener('pointermove', e => {
+      const el = e.target.closest('[data-magnetic]');
+      if (this.mag && this.mag !== el) this.mag.style.transform = '';
+      this.mag = el; if (!el) return;
+      const r = el.getBoundingClientRect();
+      el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.28}px,${(e.clientY - r.top - r.height / 2) * 0.4}px)`;
+    });
+    root.addEventListener('pointerleave', () => { if (this.mag) this.mag.style.transform = ''; this.mag = null; });
+    if (this.props.customCursor === false) return;
+    const cur = this.q('[data-cursor]'), inner = this.q('[data-cursor-in]'); if (!cur) return;
+    cur.style.display = 'block'; document.documentElement.classList.add('lpd-cursor');
+    let mx = -100, my = -100, x = -100, y = -100, rot = 0;
+    addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return; mx = e.clientX; my = e.clientY;
+      const hot = e.target.closest && e.target.closest('a,button,input,[data-flip],[data-magnetic]');
+      inner.style.transform = hot ? 'scale(1.9)' : 'scale(1)';
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => { mx = my = -100; });
+    const loop = () => { const dx = mx - x; x += dx * 0.22; y += (my - y) * 0.22; rot += dx * 0.6; cur.style.transform = `translate3d(${x}px,${y}px,0) rotate(${rot}deg)`; this.curRaf = requestAnimationFrame(loop); };
+    loop();
+  }
+
+  marquee() {
+    const m = this.q('[data-marquee]'); if (!m || this.reduced || !m.animate) return;
+    const a = m.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-50%)' }], { duration: 32000, iterations: Infinity });
+    m.addEventListener('mouseenter', () => a.playbackRate = 0.3); m.addEventListener('mouseleave', () => a.playbackRate = 1);
+  }
+
+  intro() {
+    if (this.reduced) return;
+    const b = this.q('[data-ball-intro]');
+    if (b) b.animate([
+      { transform: 'translateY(-120vh) rotate(-90deg)' },
+      { transform: 'translateY(0) scale(1.1,.88)', offset: .5 },
+      { transform: 'translateY(-16%) scale(.97,1.03)', offset: .66 },
+      { transform: 'translateY(0) scale(1.05,.94)', offset: .8 },
+      { transform: 'translateY(-5%)', offset: .9 },
+      { transform: 'none' }], { duration: 1600, easing: 'cubic-bezier(.45,0,.55,1)', fill: 'both' });
+    this.qa('[data-intro]').forEach((el, i) => el.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 900, delay: 900 + i * 140, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'both' }));
+  }
+
+  countdown(target) {
+    const h = React.createElement;
+    const d = (target - this.state.now) / 1000;
+    const units = [['Jours', d / 86400], ['Heures', d % 86400 / 3600], ['Min', d % 3600 / 60], ['Sec', d % 60]];
+    return h('div', { style: { display: 'flex', gap: 'clamp(8px,1.4vw,16px)' }, role: 'timer', 'aria-live': 'off' }, units.map(([l, v]) => {
+      const s = String(Math.floor(v)).padStart(2, '0');
+      return h('div', { key: l, style: { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 } },
+        h('div', { style: { display: 'flex', gap: 3, perspective: 500 } }, s.split('').map((c, i) => h('div', { key: l + i + c, style: { position: 'relative', width: 'clamp(30px,4vw,50px)', height: 'clamp(46px,5.8vw,72px)', background: 'var(--tile)', color: 'var(--tileInk)', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'clamp(28px,3.8vw,48px)', fontWeight: 800, fontVariantNumeric: 'tabular-nums', transformOrigin: '50% 0', animation: this.reduced ? 'none' : 'lpdFlip .55s cubic-bezier(.2,.8,.2,1)' } }, c,
+          h('div', { style: { position: 'absolute', left: 0, right: 0, top: '50%', height: 1, background: 'rgba(255,255,255,.16)' } })))),
+        h('div', { style: { fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--ink2)' } }, l));
+    }));
+  }
+
+  renderVals() {
+    const nd = this.props.nextDate ?? '';
+    const target = nd ? new Date(nd).getTime() : NaN;
+    const hasNext = !isNaN(target) && target > this.state.now;
+    const dt = hasNext ? new Date(target) : null;
+    const fl = k => ({
+      rot: this.state.flip[k] ? 'rotateY(180deg)' : 'none',
+      on: () => { if (this.fine) this.setState(s => ({ flip: { ...s.flip, [k]: true } })); },
+      off: () => { if (this.fine) this.setState(s => ({ flip: { ...s.flip, [k]: false } })); },
+      tap: e => { if (this.fine || (e.target.closest && e.target.closest('a'))) return; this.setState(s => ({ flip: { ...s.flip, [k]: !s.flip[k] } })); }
+    });
+    const FAQ = [
+      ['Comment inscrire mon équipe à un tournoi ?', "Les inscriptions se font entièrement en ligne via les liens de la section « Prochains événements ». Attention, les places sont limitées !"],
+      ['Faut-il forcément une équipe de 4 (3+1) ?', "Non, tu peux venir à 3. Mais en cas de blessure, ton équipe devra finir le tournoi à 2 ou déclarer forfait. Un remplaçant, c'est plus sûr."],
+      ['Quel est le niveau attendu ?', "Tous les passionnés sont les bienvenus, du pur amateur au joueur confirmé. Nos tournois sont découpés en catégories Loisir et Elite pour que chaque match soit équilibré."],
+      ['Où se déroulent les tournois ?', "À Strasbourg et en Alsace, notamment avec notre partenaire Le Basket Center. Le lieu exact est indiqué sur chaque événement."],
+      ['Comment connaître la date du prochain tournoi ?', "Active l'alerte email en bas de page et suis-nous sur Instagram et TikTok (@lapassed_off). Le compte à rebours apparaît en haut du site dès qu'une date est fixée."],
+      ["C'est quoi le 3x3 ?", "Du basket à 3 contre 3 sur un demi-terrain, avec un seul panier. Rapide, intense et spectaculaire, c'est une discipline olympique depuis les Jeux de Tokyo en 2021."]];
+    return {
+      rootRef: this.rootRef,
+      mob: this.state.mob, desk: !this.state.mob,
+      menuOpen: this.state.menu,
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
+      closeMenu: () => this.setState({ menu: false }),
+      toggleTheme: () => this.setTheme(this.state.theme === 'dark' ? 'light' : 'dark'),
+      themeLabel: this.state.theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre',
+      hasNext, noNext: !hasNext,
+      countdown: hasNext ? this.countdown(target) : null,
+      nextDay: dt ? String(dt.getDate()).padStart(2, '0') : '',
+      nextMonth: dt ? dt.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) : '',
+      nextTitle: this.props.nextTitle ?? 'Tournoi 3x3 Strasbourg',
+      nextPartner: this.props.nextPartner ?? 'Le Basket Center',
+      nextLink: this.props.nextLink ?? '#tournois',
+      cards: { up: fl('up'), sv: fl('sv'), e1: fl('e1'), e2: fl('e2') },
+      faqs: FAQ.map(([q, a], i) => {
+        const open = this.state.faq === i;
+        return { q, a, open, rows: open ? '1fr' : '0fr', rot: open ? 'rotate(90deg)' : 'none', toggle: () => this.setState({ faq: open ? -1 : i }) };
+      }),
+      email: this.state.email,
+      setEmail: e => this.setState({ email: e.target.value }),
+      submit: e => { e.preventDefault(); if (/\S+@\S+\.\S+/.test(this.state.email)) this.setState({ sent: true }); },
+      sent: this.state.sent, notSent: !this.state.sent
+    };
+  }
+}
+</script>
+</body>
+</html>
