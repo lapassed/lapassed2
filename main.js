@@ -330,7 +330,8 @@ const ALERT_ENDPOINT = null;
     const s0 = mob ? Math.min(W * 0.52, 260) : Math.min(W * 0.32, 470);
     const k0 = { y: 0, x: mob ? W * 0.78 : W * 0.75, cy: mob ? H * 0.27 : H * 0.42, s: s0, o: 1 };
     if (reduced || !mission || !rim || !events) { K = [k0, { ...k0, y: H * 0.8, o: 0 }]; k7 = null; return; }
-    const big = Math.hypot(W, H) * 1.35, g = mob ? 28 : 56, gs = mob ? 34 : 54;
+    // sur mobile, ballon géant plus raisonnable : une texture de plusieurs milliers de px fait saccader les téléphones
+    const big = mob ? Math.max(W, H) * 1.05 : Math.hypot(W, H) * 1.35, g = mob ? 28 : 56, gs = mob ? 34 : 54;
     const mt = top(mission), mb = mt + mission.offsetHeight;
     const r = rim.getBoundingClientRect(), rx = r.left + r.width / 2, ry = r.top + sy + r.height / 2, bs = r.width * 0.74;
     const k = Math.min(ry - H * 0.55, maxY - 200);
@@ -370,11 +371,12 @@ const ALERT_ENDPOINT = null;
       let cy = ca + (cb - ca) * ey;
       const s = a.s + (b.s - a.s) * eg, o = a.o + (b.o - a.o) * eg;
       if (a.drib) cy -= Math.abs(Math.sin((y - a.y) / 85)) * (W < 900 ? 46 : 84) * Math.sin(Math.PI * t);
-      ball.style.transform = `translate3d(${(x - 100).toFixed(1)}px,${(cy - 100).toFixed(1)}px,0) scale(${(s / 200).toFixed(4)})`;
+      ball.style.transform = `translate3d(${(x - 300).toFixed(1)}px,${(cy - 300).toFixed(1)}px,0) scale(${(s / 600).toFixed(4)})`;
       set(ball, 'bo', 'opacity', o.toFixed(3));
       const z = (s > 320 || y < H * 0.85) ? -1 : 30;
       if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
-      if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+      // les coutures ne tournent que quand le ballon est petit (sinon tout le ballon géant est repeint à chaque image)
+      if (spin && s < 400) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
       if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
       lastY = y;
     }

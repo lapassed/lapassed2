@@ -65,20 +65,22 @@ html.lpd-cursor input { cursor: text !important; }
 .bg-court path { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .rm .bg-court path { stroke-dashoffset: 0; }
 
+/* ballon dessiné en 600px puis réduit : jamais d'agrandissement coûteux ni flou */
 .ball {
-  position: fixed; left: 0; top: 0; width: 200px; height: 200px; z-index: -1;
-  pointer-events: none; will-change: transform, opacity; transform: translate3d(-400px,-400px,0);
+  position: fixed; left: 0; top: 0; width: 600px; height: 600px; z-index: -1;
+  pointer-events: none; will-change: transform, opacity; transform: translate3d(-1000px,-1000px,0);
+  contain: layout paint style;
 }
 .ball-intro { width: 100%; height: 100%; }
 .ball-body {
   position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
   background: radial-gradient(circle at 38% 34%, #F2A15C 0%, #DE6A24 48%, #9E410E 100%);
 }
-.ball-spin { position: absolute; inset: 0; }
+.ball-spin { position: absolute; inset: 0; will-change: transform; }
 .seam { position: absolute; display: block; }
-.seam-v { left: 50%; top: -2%; bottom: -2%; width: 3px; margin-left: -1.5px; background: #3B1806; }
-.seam-h { top: 50%; left: -2%; right: -2%; height: 3px; margin-top: -1.5px; background: #3B1806; }
-.seam-l, .seam-r { top: -12%; bottom: -12%; border: 3px solid #3B1806; border-radius: 50%; }
+.seam-v { left: 50%; top: -2%; bottom: -2%; width: 9px; margin-left: -4.5px; background: #3B1806; }
+.seam-h { top: 50%; left: -2%; right: -2%; height: 9px; margin-top: -4.5px; background: #3B1806; }
+.seam-l, .seam-r { top: -12%; bottom: -12%; border: 9px solid #3B1806; border-radius: 50%; }
 .seam-l { left: -46%; right: 58%; }
 .seam-r { left: 58%; right: -46%; }
 .ball-shade {
