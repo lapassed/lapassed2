@@ -388,9 +388,9 @@ const ALERT_ENDPOINT = null;
   // n'écrit un style que s'il a changé
   const set = (el, k, prop, v) => { if (last[k] !== v) { last[k] = v; el.style[prop] = v; } };
 
-  const update = () => {
-    const y = scrollY, W = vw, H = vh;
-
+  /* État de toutes les animations liées au scroll, pour une position y donnée (fonction pure). */
+  const compute = y => {
+    const W = vw, H = vh, v = {};
     if (K && ball) {
       let i = 0; while (i < K.length - 2 && y > K[i + 1].y) i++;
       const a = K[i], b = K[i + 1] || a, t = b.y === a.y ? 1 : cl((y - a.y) / (b.y - a.y));
@@ -400,50 +400,96 @@ const ALERT_ENDPOINT = null;
       let cy = ca + (cb - ca) * ey;
       const s = a.s + (b.s - a.s) * eg, o = a.o + (b.o - a.o) * eg;
       if (a.drib) cy -= Math.abs(Math.sin((y - a.y) / 85)) * (W < 900 ? 46 : 84) * Math.sin(Math.PI * t);
-      ball.style.transform = `translate3d(${(x - 300).toFixed(1)}px,${(cy - 300).toFixed(1)}px,0) scale(${(s / 600).toFixed(4)})`;
-      set(ball, 'bo', 'opacity', o.toFixed(3));
-      set(ball, 'bv', 'visibility', o < 0.005 ? 'hidden' : 'visible');
-      const z = (s > 320 || y < H * 0.85) ? -1 : 30;
-      if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
-      if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
-      if (bigBall) {
-        // opacité du grand ballon : 0 → 0.08 en arrivant au centre, 0.08 pendant la mission, → 0 ensuite
-        const bo = 0.08 * ((a.big ? 1 : 0) + ((b.big ? 1 : 0) - (a.big ? 1 : 0)) * eg);
-        set(bigBall, 'bb', 'opacity', bo.toFixed(3));
-        set(bigBall, 'bbv', 'visibility', bo < 0.001 ? 'hidden' : 'visible');
-        if (bo > 0) bigSpin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
-      }
-      if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
-      lastY = y;
+      v.ballT = `translate3d(${(x - 300).toFixed(1)}px,${(cy - 300).toFixed(1)}px,0) scale(${(s / 600).toFixed(4)})`;
+      v.ballO = +o.toFixed(3);
+      v.ballZ = (s > 320 || y < H * 0.85) ? -1 : 30;
+      // opacité du grand ballon (tactile) : 0 → 0.08 en arrivant au centre, 0.08 pendant la mission, → 0 ensuite
+      if (bigBall) v.bigO = +(0.08 * ((a.big ? 1 : 0) + ((b.big ? 1 : 0) - (a.big ? 1 : 0)) * eg)).toFixed(3);
     }
+    if (!reduced && heroInner) {
+      const yy = Math.min(y, H * 1.2), hp = cl(yy / (H * 0.9));
+      v.heroT = `translate3d(0,${(yy * 0.18).toFixed(1)}px,0)`;
+      v.heroO = +(1 - hp * 0.9).toFixed(3);
+    }
+    if (!reduced && track && galLen > 0) {
+      const tx = cl((y - galTop) / galLen) * galLen;
+      v.trackT = `translate3d(${(-tx).toFixed(1)}px,0,0)`;
+      v.cards = cards.map(({ c }) => {
+        const off = (c - tx - W / 2) / W;
+        return { z: `scale(${(1 - Math.min(Math.abs(off), 1) * 0.08).toFixed(4)})`, i: `translate3d(${(-off * 9).toFixed(2)}%,0,0) scale(1.18)` };
+      });
+    }
+    return v;
+  };
 
+  /* ---- Mode 1 : ScrollTimeline (Safari 26+, Chrome 115+) ----
+     Les animations sont échantillonnées en keyframes et jouées par le moteur de scroll du navigateur :
+     elles suivent le doigt sans aucun décalage (sur iPhone, le JS reçoit le scroll avec une image de retard). */
+  const useTimeline = !reduced && typeof window.ScrollTimeline === 'function' && !!Element.prototype.animate;
+  let tlAnims = [];
+  const buildTimeline = () => {
+    tlAnims.forEach(a => a.cancel()); tlAnims = [];
+    const root = document.documentElement, R = Math.max(1, root.scrollHeight - root.clientHeight);
+    const timeline = new ScrollTimeline({ source: root, axis: 'block' });
+    const STEP = 8;
+    // positions échantillonnées : tout le document, plus fin nulle part car 8px suffit à 60 i/s
+    const ys = []; for (let y = 0; y < R; y += STEP) ys.push(y); ys.push(R);
+    const frames = ys.map(y => [y / R, compute(y)]);
+    const run = (el, build) => {
+      if (!el) return;
+      const kf = [];
+      frames.forEach(([offset, v]) => { const f = build(v); if (f) { f.offset = offset; kf.push(f); } });
+      // supprime les keyframes identiques consécutives (garde les bornes)
+      const slim = kf.filter((f, i) => i === 0 || i === kf.length - 1 || JSON.stringify({ ...f, offset: 0 }) !== JSON.stringify({ ...kf[i - 1], offset: 0 }) || JSON.stringify({ ...f, offset: 0 }) !== JSON.stringify({ ...kf[i + 1], offset: 0 }));
+      tlAnims.push(el.animate(slim, { timeline, fill: 'both', easing: 'linear' }));
+    };
+    run(ball, v => v.ballT && { transform: v.ballT, opacity: v.ballO });
+    if (bigBall) run(bigBall, v => ({ opacity: v.bigO || 0 }));
+    // rotation des coutures : linéaire, deux keyframes suffisent
+    [spin, bigSpin].forEach(el => el && tlAnims.push(el.animate([{ transform: 'rotate(0deg)' }, { transform: `rotate(${(R * 0.32).toFixed(1)}deg)` }], { timeline, fill: 'both', easing: 'linear' })));
+    run(heroInner, v => v.heroT && { transform: v.heroT, opacity: v.heroO });
+    run(track, v => v.trackT && { transform: v.trackT });
+    cards.forEach((c, i) => {
+      run(c.z, v => v.cards && { transform: v.cards[i].z });
+      run(c.img, v => v.cards && { transform: v.cards[i].i });
+    });
+  };
+
+  /* ---- Mode 2 : boucle requestAnimationFrame (navigateurs plus anciens) ---- */
+  const apply = (v, y) => {
+    if (v.ballT) {
+      ball.style.transform = v.ballT;
+      set(ball, 'bo', 'opacity', String(v.ballO));
+      set(ball, 'bv', 'visibility', v.ballO < 0.005 ? 'hidden' : 'visible');
+      if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+    }
+    if (bigBall && v.bigO != null) {
+      set(bigBall, 'bb', 'opacity', String(v.bigO));
+      set(bigBall, 'bbv', 'visibility', v.bigO < 0.001 ? 'hidden' : 'visible');
+      if (v.bigO > 0) bigSpin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+    }
+    if (v.heroT) { set(heroInner, 'ht', 'transform', v.heroT); set(heroInner, 'ho', 'opacity', String(v.heroO)); }
+    if (v.trackT && y > galTop - vh && y < galTop + galLen + vh) {
+      track.style.transform = v.trackT;
+      cards.forEach(({ z, img }, i) => { z.style.transform = v.cards[i].z; if (img) img.style.transform = v.cards[i].i; });
+    }
+  };
+
+  const update = () => {
+    const y = scrollY;
+    const v = compute(y);
+    if (!useTimeline) apply(v, y);
+    // éléments discrets, gérés dans les deux modes
+    if (v.ballZ != null && v.ballZ !== zIdx) { zIdx = v.ballZ; ball.style.zIndex = v.ballZ; }
+    if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
+    lastY = y;
     if (!reduced && court.length) {
       if (lite) { clearTimeout(courtT); courtT = setTimeout(drawCourt, 140); }
       else drawCourt();
     }
-
     if (nav) {
       const solid = y > 30;
       if (solid !== navSolid) { navSolid = solid; nav.classList.toggle('is-solid', solid); }
-    }
-
-    if (!reduced && heroInner && (y < H * 1.2 || last.hy !== 'done')) {
-      const hp = cl(y / (H * 0.9));
-      heroInner.style.transform = `translate3d(0,${(Math.min(y, H * 1.2) * 0.18).toFixed(1)}px,0)`;
-      set(heroInner, 'ho', 'opacity', (1 - hp * 0.9).toFixed(3));
-      last.hy = y < H * 1.2 ? '' : 'done';
-    }
-
-    // galerie : seulement quand elle est à l'écran
-    if (!reduced && track && galLen > 0 && y > galTop - H && y < galTop + galLen + H) {
-      const tx = cl((y - galTop) / galLen) * galLen;
-      track.style.transform = `translate3d(${(-tx).toFixed(1)}px,0,0)`;
-      cards.forEach(({ z, img, c }) => {
-        const off = (c - tx - W / 2) / W;
-        if (Math.abs(off) > 1.4) return;
-        z.style.transform = `scale(${(1 - Math.min(Math.abs(off), 1) * 0.08).toFixed(4)})`;
-        if (img) img.style.transform = `translate3d(${(-off * 9).toFixed(2)}%,0,0) scale(1.18)`;
-      });
     }
   };
 
@@ -452,8 +498,13 @@ const ALERT_ENDPOINT = null;
 
   let raf = 0;
   addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); }, { passive: true });
-  const re = () => { measure(); update(); };
-  addEventListener('resize', () => { if (viewportChanged()) re(); });
+  const re = () => { measure(); if (useTimeline) buildTimeline(); update(); };
+  let tlT;
+  addEventListener('resize', () => {
+    if (viewportChanged()) re();
+    // la hauteur scrollable change avec la barre d'adresse : on recale la timeline (sans tout remesurer)
+    else if (useTimeline) { clearTimeout(tlT); tlT = setTimeout(buildTimeline, 250); }
+  });
   requestAnimationFrame(re);
   if (document.fonts) document.fonts.ready.then(re);
   addEventListener('load', re);
