@@ -375,15 +375,15 @@ const ALERT_ENDPOINT = null;
       set(ball, 'bo', 'opacity', o.toFixed(3));
       const z = (s > 320 || y < H * 0.85) ? -1 : 30;
       if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
-      // les coutures ne tournent que quand le ballon est petit (sinon tout le ballon géant est repeint à chaque image)
-      if (spin && s < 400) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
+      if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
       if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
       lastY = y;
     }
 
     if (!reduced && court.length) {
       const p = y / maxScroll, n = court.length;
-      court.forEach((el, j) => set(el, 'c' + j, 'strokeDashoffset', (1 - cl((p * 1.15 - j / n * 0.55) / 0.3)).toFixed(3)));
+      // sur écran tactile, précision réduite : le grand SVG fixe n'est repeint que tous les ~1 % de page
+      court.forEach((el, j) => set(el, 'c' + j, 'strokeDashoffset', (1 - cl((p * 1.15 - j / n * 0.55) / 0.3)).toFixed(fine ? 3 : 2)));
     }
 
     if (nav) {

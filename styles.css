@@ -73,10 +73,11 @@ html.lpd-cursor input { cursor: text !important; }
 }
 .ball-intro { width: 100%; height: 100%; }
 .ball-body {
-  position: relative; width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+  position: relative; width: 100%; height: 100%; border-radius: 50%;
   background: radial-gradient(circle at 38% 34%, #F2A15C 0%, #DE6A24 48%, #9E410E 100%);
 }
-.ball-spin { position: absolute; inset: 0; will-change: transform; }
+/* coutures sur leur propre calque, rogné en cercle : la rotation est faite par le GPU, sans repeindre */
+.ball-spin { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; will-change: transform; }
 .seam { position: absolute; display: block; }
 .seam-v { left: 50%; top: -2%; bottom: -2%; width: 9px; margin-left: -4.5px; background: #3B1806; }
 .seam-h { top: 50%; left: -2%; right: -2%; height: 9px; margin-top: -4.5px; background: #3B1806; }
@@ -217,7 +218,7 @@ a.hero-next { gap: 10px; }
 .track { display: flex; align-items: center; gap: clamp(14px,2vw,28px); width: max-content; padding: 0 var(--gutter); will-change: transform; }
 .shot { margin: 0; display: flex; flex-direction: column; gap: 12px; flex: none; }
 .shot figcaption { letter-spacing: .12em; color: var(--ink2); }
-.shot-frame { overflow: hidden; border-radius: 6px; background: var(--bg2); }
+.shot-frame { overflow: hidden; border-radius: 6px; background: var(--bg2); will-change: transform; }
 .shot-frame.s1 { width: clamp(260px,40vw,600px); height: clamp(300px,56vh,600px); }
 .shot-frame.s2 { width: clamp(220px,28vw,420px); height: clamp(340px,66vh,680px); }
 .shot-frame.s3 { width: clamp(260px,40vw,600px); height: clamp(280px,48vh,520px); }
@@ -228,7 +229,7 @@ a.hero-next { gap: 10px; }
 .rm .gallery-pin { position: relative; height: auto; padding: 80px 0; }
 .rm .track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; }
 .rm .shot { scroll-snap-align: start; }
-.rm .shot-frame img { transform: none; }
+.rm .shot-frame, .rm .shot-frame img { transform: none; will-change: auto; }
 
 /* ============ 4. Événements ============ */
 .events { position: relative; padding-top: clamp(100px,12vw,180px); padding-bottom: clamp(100px,12vw,180px); }
