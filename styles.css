@@ -114,6 +114,8 @@ html.lpd-cursor input { cursor: text !important; }
   .nav.is-solid { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
 }
 @media not ((hover: hover) and (pointer: fine)) {
+  .grain { display: none; }
+  .bg-court path { transition: stroke-dashoffset .7s cubic-bezier(.2,.8,.2,1); }
   :root { --navbg: rgba(255,255,255,.96); }
   html[data-theme="dark"] { --navbg: rgba(15,23,42,.96); }
 }

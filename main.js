@@ -148,8 +148,8 @@ const ALERT_ENDPOINT = null;
           for (const ch of w) {
             const l = document.createElement('span'); l.textContent = ch; l.style.display = 'inline-block'; ws.appendChild(l);
             l.animate([
-              { opacity: 0, transform: 'translateY(.55em) rotate(6deg)', filter: 'blur(6px)' },
-              { opacity: 1, transform: 'none', filter: 'blur(0)' }
+              fine ? { opacity: 0, transform: 'translateY(.55em) rotate(6deg)', filter: 'blur(6px)' } : { opacity: 0, transform: 'translateY(.55em) rotate(6deg)' },
+              fine ? { opacity: 1, transform: 'none', filter: 'blur(0)' } : { opacity: 1, transform: 'none' }
             ], { duration: 760, delay: 250 + n++ * 26, easing: EASE, fill: 'backwards' });
           }
           frag.appendChild(ws);
@@ -353,11 +353,13 @@ const ALERT_ENDPOINT = null;
       Object.assign(bigBall.style, { width: d + 'px', height: d + 'px', margin: `${-d / 2}px 0 0 ${-d / 2}px` });
       bigBall.style.setProperty('--sw', (d * 0.015).toFixed(1) + 'px');
     }
-    // tactile : le petit ballon grossit un peu et s'efface au centre, le grand prend le relais en fondu
-    const mid = bigBall ? { s: s0 * 1.6, o: 0 } : { s: big, o: 0.08 };
+    // tactile : le petit ballon glisse au centre en s'effaçant SANS changer de taille, le grand prend le relais
+    // en fondu ; la réduction à la taille « galerie » se fait pendant qu'il est invisible.
+    const m1 = bigBall ? { s: s0, o: 0 } : { s: big, o: 0.08 };
+    const m2 = bigBall ? { s: gs, o: 0 } : { s: big, o: 0.08 };
     K = [k0,
-      { y: mt - H * 0.45, x: W * 0.5, cy: H * 0.5, ...mid, big: 1 },
-      { y: mb - H * 1.05, x: W * 0.5, cy: H * 0.5, ...mid, big: 1 },
+      { y: mt - H * 0.45, x: W * 0.5, cy: H * 0.5, ...m1, big: 1 },
+      { y: mb - H * 1.05, x: W * 0.5, cy: H * 0.5, ...m2, big: 1 },
       { y: galTop, x: g, cy: H - g - 12, s: gs, o: 1 },
       { y: galTop + galLen, x: W - g, cy: H - g - 12, s: gs, o: 1, ex: 'lin' },
       { y: top(events), x: W - g * 0.8, cy: H * 0.62, s: gs, o: 1, drib: 1 },
@@ -374,6 +376,13 @@ const ALERT_ENDPOINT = null;
     const net = q('[data-net]'), sw = q('[data-swish]');
     if (net && net.animate) net.animate([{ transform: 'scale(1,1)' }, { transform: 'scale(.86,1.28)' }, { transform: 'scale(1.04,.94)' }, { transform: 'scale(1,1)' }], { duration: 650, easing: EASE });
     if (sw && sw.animate) sw.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none', offset: .25 }, { opacity: 1, offset: .75 }, { opacity: 0, transform: 'translateY(-12px)' }], { duration: 1600, easing: 'ease-out' });
+  };
+
+  // terrain tracé à la craie : sur tactile, mis à jour seulement quand le scroll s'arrête (transition CSS)
+  let courtT;
+  const drawCourt = () => {
+    const p = scrollY / maxScroll, n = court.length;
+    court.forEach((el, j) => set(el, 'c' + j, 'strokeDashoffset', (1 - cl((p * 1.15 - j / n * 0.55) / 0.3)).toFixed(3)));
   };
 
   // n'écrit un style que s'il a changé
@@ -393,6 +402,7 @@ const ALERT_ENDPOINT = null;
       if (a.drib) cy -= Math.abs(Math.sin((y - a.y) / 85)) * (W < 900 ? 46 : 84) * Math.sin(Math.PI * t);
       ball.style.transform = `translate3d(${(x - 300).toFixed(1)}px,${(cy - 300).toFixed(1)}px,0) scale(${(s / 600).toFixed(4)})`;
       set(ball, 'bo', 'opacity', o.toFixed(3));
+      set(ball, 'bv', 'visibility', o < 0.005 ? 'hidden' : 'visible');
       const z = (s > 320 || y < H * 0.85) ? -1 : 30;
       if (z !== zIdx) { zIdx = z; ball.style.zIndex = z; }
       if (spin) spin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
@@ -400,6 +410,7 @@ const ALERT_ENDPOINT = null;
         // opacité du grand ballon : 0 → 0.08 en arrivant au centre, 0.08 pendant la mission, → 0 ensuite
         const bo = 0.08 * ((a.big ? 1 : 0) + ((b.big ? 1 : 0) - (a.big ? 1 : 0)) * eg);
         set(bigBall, 'bb', 'opacity', bo.toFixed(3));
+        set(bigBall, 'bbv', 'visibility', bo < 0.001 ? 'hidden' : 'visible');
         if (bo > 0) bigSpin.style.transform = `rotate(${(y * 0.32).toFixed(1)}deg)`;
       }
       if (k7 != null && lastY != null && lastY < k7 && y >= k7) swish();
@@ -407,9 +418,8 @@ const ALERT_ENDPOINT = null;
     }
 
     if (!reduced && court.length) {
-      const p = y / maxScroll, n = court.length;
-      // sur écran tactile, précision réduite : le grand SVG fixe n'est repeint que tous les ~1 % de page
-      court.forEach((el, j) => set(el, 'c' + j, 'strokeDashoffset', (1 - cl((p * 1.15 - j / n * 0.55) / 0.3)).toFixed(fine ? 3 : 2)));
+      if (lite) { clearTimeout(courtT); courtT = setTimeout(drawCourt, 140); }
+      else drawCourt();
     }
 
     if (nav) {
